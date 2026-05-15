@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Quiz - Nossa Senhora Desatadora dos Nós</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:
+linear-gradient(rgba(8,12,25,.78),rgba(8,12,25,.92)),
+url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=1400&auto=format&fit=crop') center/cover;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+color:white;
+overflow:hidden;
+}
+
+.glow{
+position:fixed;
+width:500px;
+height:500px;
+background:rgba(255,215,120,.08);
+filter:blur(120px);
+border-radius:50%;
+top:-120px;
+right:-120px;
+z-index:0;
+}
+
+.container{
+position:relative;
+z-index:2;
+width:100%;
+max-width:500px;
+}
+
+.card{
+backdrop-filter:blur(16px);
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.12);
+border-radius:28px;
+padding:35px 28px;
+box-shadow:0 10px 40px rgba(0,0,0,.35);
+animation:fade .5s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.progress-wrap{
+margin-bottom:28px;
+}
+
+.progress-text{
+font-size:13px;
+opacity:.8;
+margin-bottom:8px;
+}
+
+.progress{
+width:100%;
+height:8px;
+background:rgba(255,255,255,.12);
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#f7d07c,#fff0c7);
+border-radius:20px;
+transition:.4s;
+}
+
+.logo{
+text-align:center;
+font-size:14px;
+letter-spacing:2px;
+margin-bottom:18px;
+opacity:.9;
+}
+
+h1{
+font-family:'Cormorant Garamond',serif;
+font-size:38px;
+line-height:1.1;
+margin-bottom:16px;
+text-align:center;
+font-weight:700;
+}
+
+.subtitle{
+text-align:center;
+font-size:15px;
+line-height:1.6;
+opacity:.88;
+margin-bottom:28px;
+}
+
+.answers{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+.btn{
+border:none;
+padding:17px;
+border-radius:18px;
+font-size:15px;
+font-weight:500;
+cursor:pointer;
+transition:.25s;
+background:rgba(255,255,255,.08);
+color:white;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.btn:hover{
+transform:translateY(-2px);
+background:rgba(255,255,255,.14);
+}
+
+.offer{
+text-align:center;
+}
+
+.offer h2{
+font-family:'Cormorant Garamond',serif;
+font-size:42px;
+line-height:1.1;
+margin-bottom:18px;
+}
+
+.offer p{
+font-size:15px;
+line-height:1.7;
+opacity:.9;
+margin-bottom:22px;
+}
+
+.benefits{
+text-align:left;
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-bottom:28px;
+}
+
+.benefits div{
+background:rgba(255,255,255,.06);
+padding:14px;
+border-radius:14px;
+font-size:14px;
+}
+
+.cta{
+display:block;
+width:100%;
+text-align:center;
+padding:18px;
+border-radius:18px;
+background:linear-gradient(90deg,#f7d07c,#fff0c7);
+color:#111;
+font-weight:700;
+text-decoration:none;
+font-size:15px;
+transition:.3s;
+}
+
+.cta:hover{
+transform:scale(1.02);
+}
+
+.small{
+margin-top:14px;
+font-size:12px;
+opacity:.65;
+text-align:center;
+}
+
+.hidden{
+display:none;
+}
+
+.fade{
+animation:fade .4s ease;
+}
+
+@media(max-width:600px){
+
+h1{
+font-size:31px;
+}
+
+.offer h2{
+font-size:34px;
+}
+
+.card{
+padding:28px 22px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<div class="container">
+
+<div class="card fade" id="quizCard">
+
+<div class="progress-wrap">
+<div class="progress-text" id="progressText">
+Etapa 1 de 15
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+</div>
+
+<div class="logo">
+NOVENA SAGRADA
+</div>
+
+<div id="quizContent"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const steps = [
+
+{
+title:"Você sente que existe algo travando sua vida atualmente?",
+subtitle:"",
+answers:[
+"Sim, muito",
+"Às vezes",
+"Não sei explicar"
+]
+},
+
+{
+title:"Qual área parece mais amarrada hoje?",
+subtitle:"",
+answers:[
+"Vida financeira",
+"Relacionamentos",
+"Saúde",
+"Paz espiritual",
+"Família"
+]
+},
+
+{
+title:"Você já tentou resolver isso sozinho(a) várias vezes?",
+subtitle:"",
+answers:[
+"Sim",
+"Muitas vezes",
+"Já perdi as esperanças"
+]
+},
+
+{
+title:"Você acredita que existem batalhas espirituais invisíveis?",
+subtitle:"",
+answers:[
+"Sim",
+"Tenho dúvidas",
+"Acho que sim"
+]
+},
+
+{
+title:"Quando foi a última vez que você orou de coração?",
+subtitle:"",
+answers:[
+"Hoje",
+"Esta semana",
+"Faz muito tempo"
+]
+},
+
+{
+title:"Você sente que carrega um peso emocional constante?",
+subtitle:"",
+answers:[
+"Sim",
+"Todos os dias",
+"Muito forte ultimamente"
+]
+},
+
+{
+title:"Qual dessas frases mais descreve você?",
+subtitle:"",
+answers:[
+"Nada dá certo pra mim",
+"Estou cansado(a)",
+"Preciso de um milagre",
+"Quero voltar a ter paz"
+]
+},
+
+{
+title:"Você acredita no poder da intercessão de Maria?",
+subtitle:"",
+answers:[
+"Sim, totalmente",
+"Muito",
+"Quero acreditar mais"
+]
+},
+
+{
+title:"Muitas pessoas relatam bênçãos após a oração da Desatadora dos Nós...",
+subtitle:"Reconciliações, portas abertas, paz interior e libertação espiritual.",
+answers:[
+"Continuar"
+]
+},
+
+{
+title:"Qual nó você mais deseja entregar hoje?",
+subtitle:"",
+answers:[
+"Dívidas",
+"Ansiedade",
+"Casamento",
+"Vícios",
+"Tristeza",
+"Medos"
+]
+},
+
+{
+title:"Se sua vida mudasse nos próximos 30 dias, o que seria o maior sinal?",
+subtitle:"",
+answers:[
+"Paz",
+"Dinheiro entrando",
+"Família restaurada",
+"Dormir tranquilo(a)",
+"Resposta de Deus"
+]
+},
+
+{
+title:"Você acredita que Deus ainda pode agir no impossível?",
+subtitle:"",
+answers:[
+"Sim",
+"Quero acreditar",
+"Preciso de um sinal"
+]
+},
+
+{
+title:"Talvez você não esteja aqui por acaso.",
+subtitle:"Muitas vezes, Deus usa pequenos sinais para nos aproximar da graça que precisamos.",
+answers:[
+"Continuar"
+]
+},
+
+{
+title:"Com base nas suas respostas...",
+subtitle:"Você demonstra estar vivendo um período de fortes cargas emocionais e espirituais. A Novena de Nossa Senhora Desatadora dos Nós foi criada para pessoas que desejam entregar seus problemas nas mãos de Maria.",
+answers:[
+"Quero conhecer a novena"
+]
+}
+
+];
+
+let current = 0;
+
+const quizContent = document.getElementById('quizContent');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+
+function renderStep(){
+
+const step = steps[current];
+
+progressText.innerText = `Etapa ${current + 1} de 15`;
+
+progressBar.style.width = `${((current+1)/15)*100}%`;
+
+quizContent.innerHTML = `
+
+<h1>${step.title}</h1>
+
+<p class="subtitle">
+${step.subtitle}
+</p>
+
+<div class="answers">
+${step.answers.map(answer => `
+<button class="btn" onclick="nextStep()">
+${answer}
+</button>
+`).join('')}
+</div>
+
+`;
+
+}
+
+function nextStep(){
+
+current++;
+
+if(current >= steps.length){
+
+showOffer();
+
+return;
+
+}
+
+renderStep();
+
+}
+
+function showOffer(){
+
+progressText.innerText = "Resultado Final";
+
+progressBar.style.width = "100%";
+
+quizContent.innerHTML = `
+
+<div class="offer fade">
+
+<h2>
+Desate os nós que estão impedindo sua felicidade
+</h2>
+
+<p>
+Receba agora a Novena completa de Nossa Senhora Desatadora dos Nós e viva uma jornada espiritual profunda de oração, paz e libertação.
+</p>
+
+<div class="benefits">
+
+<div>🙏 Orações guiadas e emocionantes</div>
+
+<div>✨ Fortalecimento espiritual diário</div>
+
+<div>💙 Entrega das dores e preocupações</div>
+
+<div>🕊️ Paz interior e conexão com Deus</div>
+
+<div>📖 Jornada completa de 9 dias</div>
+
+</div>
+
+<a href="#"
+class="cta">
+
+QUERO COMEÇAR MINHA NOVENA AGORA
+
+</a>
+
+<div class="small">
+Acesso imediato após a confirmação.
+</div>
+
+</div>
+
+`;
+
+}
+
+renderStep();
+
+</script>
+
+</body>
+</html>
