@@ -1,0 +1,1798 @@
+<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chopan Kebab - Authentic Afghan cuisine and kebabs in Edgware, London. Fresh, handmade dishes with traditional flavours.">
+    <meta name="keywords" content="Chopan Kebab, Afghan food, kebab, Edgware, halal food, catering, takeaway, Afghan cuisine">
+    <meta name="author" content="Chopan Kebab Limited">
+    <meta name="geo.region" content="GB-ENG">
+    <meta name="geo.placename" content="Edgware, London">
+    <title>Chopan Kebab | Authentic Afghan Cuisine - Edgware, London</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' rx='15' fill='%238B1A1A'/&gt;&lt;text x='50' y='68' font-size='55' font-family='Georgia,serif' fill='%23f4c542' text-anchor='middle' font-weight='bold'&gt;C&lt;/text&gt;&lt;/svg&gt;">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B1A1A;
+            --primary-light: #b22222;
+            --secondary: #f4c542;
+            --accent: #2d6b2d;
+            --cream: #fdf8f0;
+            --dark: #1a1a1a;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --success: #10b981;
+            --warm: #e65100;
+            --spice: #d4a017;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Language Switcher */
+        .lang-bar {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 5px;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--gray);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(139, 26, 26, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-logo span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-logo .highlight {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #3d0c0c 0%, var(--primary) 40%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(244, 197, 66, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(244, 197, 66, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(244, 197, 66, 0.15);
+            border: 1px solid rgba(244, 197, 66, 0.3);
+            color: var(--secondary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .highlight {
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #e6b730;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(244, 197, 66, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-outline:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-accent:hover {
+            background: #1e4d1e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(45, 107, 45, 0.3);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* CATERING / MENU SECTION */
+        .catering-shop {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 50%, #fdf8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .catering-shop::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary), var(--secondary));
+        }
+
+        .catering-banner {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            box-shadow: 0 20px 40px rgba(139, 26, 26, 0.2);
+        }
+
+        .catering-banner-text h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .catering-banner-text p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+        }
+
+        .catering-banner .btn {
+            white-space: nowrap;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .catering-banner .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .catering-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .catering-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .catering-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .catering-card-image {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+        }
+
+        .catering-card-image.kebab { background: linear-gradient(135deg, #ff6b35, #f7c59f); }
+        .catering-card-image.rice { background: linear-gradient(135deg, #f4e285, #d4a017); }
+        .catering-card-image.platter { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+        .catering-card-image.naan { background: linear-gradient(135deg, #deb887, #d2691e); }
+        .catering-card-image.dessert { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .catering-card-image.bundle { background: linear-gradient(135deg, var(--secondary), #ff6b6b); }
+
+        .catering-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--primary);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .catering-badge.popular {
+            background: var(--success);
+        }
+
+        .catering-badge.new {
+            background: var(--warm);
+        }
+
+        .catering-card-body {
+            padding: 1.5rem;
+        }
+
+        .catering-card-body h4 {
+            font-size: 1.15rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .catering-card-body p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .catering-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-interest {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-interest:hover {
+            background: var(--primary-light);
+            transform: scale(1.02);
+        }
+
+        .catering-trust {
+            max-width: 800px;
+            margin: 2.5rem auto 0;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .trust-item span {
+            font-size: 1.3rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--cream);
+        }
+
+        .about-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '🥙';
+            font-size: 8rem;
+            opacity: 0.9;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-item .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-item .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Menu Section */
+        .menu {
+            background: #fff;
+        }
+
+        .menu-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--secondary);
+        }
+
+        .menu-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .menu-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .menu-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .testimonials .section-header h2 {
+            color: #fff;
+        }
+
+        .testimonials .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .testimonials-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .testimonial-stars {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            color: rgba(255,255,255,0.85);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author .name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author .location {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--cream);
+        }
+
+        .contact-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .contact-item-text .title {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .contact-item-text .detail {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            color: #fff;
+        }
+
+        .footer-links a {
+            display: block;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-legal {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-legal-info {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.82rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-legal-info strong {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-copyright {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 16px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 3rem;
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: var(--light-gray);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: #e5e7eb;
+        }
+
+        /* Interest Modal */
+        .interest-modal .modal-content {
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .interest-modal .item-detail-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .interest-modal .modal-content h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .interest-modal .interest-info {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+        }
+
+        .interest-modal .interest-info div {
+            padding: 0.4rem 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .interest-modal .interest-info div::before {
+            content: '✓ ';
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .interest-modal .btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+        }
+
+        /* Halal badge */
+        .halal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid,
+            .testimonials-grid,
+            .catering-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 280px;
+            }
+
+            .catering-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+
+            .stat-item .number {
+                font-size: 1.4rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+
+            .lang-bar {
+                top: 75px;
+                right: 10px;
+            }
+
+            .catering-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .catering-trust {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (min-width: 501px) and (max-width: 900px) {
+            .catering-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 700px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse-btn {
+            animation: pulse 2s infinite;
+        }
+
+        .pulse-btn:hover {
+            animation: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-bar">
+        <button class="lang-btn active" onclick="setLang('en')">🇬🇧 EN</button>
+        <button class="lang-btn" onclick="setLang('pt')">🇧🇷 PT</button>
+        <button class="lang-btn" onclick="setLang('es')">🇪🇸 ES</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#f4c542"></rect>
+                    <text x="20" y="27" font-size="20" font-family="Georgia,serif" fill="#8B1A1A" text-anchor="middle" font-weight="bold">C</text>
+                </svg>
+                <span>Chopan <span class="highlight">Kebab</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-lang-en="Home" data-lang-pt="Início" data-lang-es="Inicio">Home</a></li>
+                <li><a href="#catering" data-lang-en="Catering" data-lang-pt="Buffet" data-lang-es="Catering">Catering</a></li>
+                <li><a href="#about" data-lang-en="About" data-lang-pt="Sobre" data-lang-es="Nosotros">About</a></li>
+                <li><a href="#menu" data-lang-en="Menu" data-lang-pt="Cardápio" data-lang-es="Menú">Menu</a></li>
+                <li><a href="#testimonials" data-lang-en="Reviews" data-lang-pt="Avaliações" data-lang-es="Reseñas">Reviews</a></li>
+                <li><a href="#contact" data-lang-en="Contact" data-lang-pt="Contato" data-lang-es="Contacto">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge" data-lang-en="🥙 Authentic Afghan Cuisine" data-lang-pt="🥙 Culinária Afegã Autêntica" data-lang-es="🥙 Cocina Afgana Auténtica">🥙 Authentic Afghan Cuisine</div>
+            <h1 data-lang-en="Freshly Grilled &lt;span class='highlight'&gt;Afghan Kebabs&lt;/span&gt; &amp; Traditional Dishes" data-lang-pt="Kebabs Afegãos &lt;span class='highlight'&gt;Grelhados na Hora&lt;/span&gt; &amp; Pratos Tradicionais" data-lang-es="Kebabs Afganos &lt;span class='highlight'&gt;Recién Asados&lt;/span&gt; &amp; Platos Tradicionales">Freshly Grilled <span class="highlight">Afghan Kebabs</span> &amp; Traditional Dishes</h1>
+            <p data-lang-en="From our kitchen in Edgware, London, we serve authentic Afghan flavours. Interested in catering for your event? Leave your email and we'll get in touch!" data-lang-pt="Da nossa cozinha em Edgware, Londres, servimos sabores afegãos autênticos. Interessado em buffet para seu evento? Deixe seu email e entraremos em contato!" data-lang-es="Desde nuestra cocina en Edgware, Londres, servimos sabores afganos auténticos. ¿Interesado en catering para tu evento? ¡Deja tu email y te contactaremos!">From our kitchen in Edgware, London, we serve authentic Afghan flavours. Interested in catering for your event? Leave your email and we'll get in touch!</p>
+            <div class="hero-buttons">
+                <a href="#catering" class="btn btn-primary" data-lang-en="🍽️ Catering Packages" data-lang-pt="🍽️ Pacotes de Buffet" data-lang-es="🍽️ Paquetes de Catering">🍽️ Catering Packages</a>
+                <a href="#menu" class="btn btn-outline" data-lang-en="Our Menu" data-lang-pt="Nosso Cardápio" data-lang-es="Nuestro Menú">Our Menu</a>
+            </div>
+            <div class="halal-badge" style="margin-top: 1.5rem;">☪️ 100% Halal</div>
+        </div>
+    </section>
+
+    <!-- CATERING PACKAGES SECTION -->
+    <section class="section catering-shop" id="catering">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="🍽️ Catering &amp; Event Packages" data-lang-pt="🍽️ Pacotes de Buffet &amp; Eventos" data-lang-es="🍽️ Paquetes de Catering &amp; Eventos">🍽️ Catering &amp; Event Packages</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Explore our catering packages for weddings, parties, and corporate events. Choose what interests you, leave your email, and we'll contact you with all the details!" data-lang-pt="Explore nossos pacotes de buffet para casamentos, festas e eventos corporativos. Escolha o que lhe interessa, deixe seu email e entraremos em contato com todos os detalhes!" data-lang-es="Explora nuestros paquetes de catering para bodas, fiestas y eventos corporativos. Elige lo que te interese, deja tu email y ¡te contactaremos con todos los detalles!">Explore our catering packages for weddings, parties, and corporate events. Choose what interests you, leave your email, and we'll contact you with all the details!</p>
+        </div>
+
+        <!-- Banner CTA -->
+        <div class="catering-banner fade-in">
+            <div class="catering-banner-text">
+                <h3 data-lang-en="📬 Planning a Big Event?" data-lang-pt="📬 Planejando um Grande Evento?" data-lang-es="📬 ¿Planeas un Gran Evento?">📬 Planning a Big Event?</h3>
+                <p data-lang-en="Register your interest in our full catering service and we'll create a custom package just for you." data-lang-pt="Registre seu interesse no nosso serviço completo de buffet e criaremos um pacote personalizado para você." data-lang-es="Registra tu interés en nuestro servicio completo de catering y crearemos un paquete personalizado para ti.">Register your interest in our full catering service and we'll create a custom package just for you.</p>
+            </div>
+            <button class="btn pulse-btn" onclick="openInterest('fullservice')" data-lang-en="I'm Interested!" data-lang-pt="Tenho Interesse!" data-lang-es="¡Me Interesa!">I'm Interested!</button>
+        </div>
+
+        <div class="catering-grid">
+            <!-- Package 1 -->
+            <div class="catering-card fade-in">
+                <div class="catering-card-image kebab">
+                    <span>🥙</span>
+                    <span class="catering-badge popular">BESTSELLER</span>
+                </div>
+                <div class="catering-card-body">
+                    <h4 data-lang-en="Kebab Platter Package" data-lang-pt="Pacote Travessa de Kebab" data-lang-es="Paquete Bandeja de Kebab">Kebab Platter Package</h4>
+                    <p data-lang-en="Selection of our finest lamb and chicken kebabs with naan, salads and signature sauces. Serves 20-50 guests." data-lang-pt="Seleção dos nossos melhores kebabs de cordeiro e frango com naan, saladas e molhos especiais. Serve 20-50 convidados." data-lang-es="Selección de nuestros mejores kebabs de cordero y pollo con naan, ensaladas y salsas especiales. Para 20-50 invitados.">Selection of our finest lamb and chicken kebabs with naan, salads and signature sauces. Serves 20-50 guests.</p>
+                    <div class="catering-card-footer">
+                        <button class="btn-interest" onclick="openInterest('kebabplatter')" data-lang-en="I'm Interested" data-lang-pt="Tenho Interesse" data-lang-es="Me Interesa">I'm Interested</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="catering-card fade-in">
+                <div class="catering-card-image rice">
+                    <span>🍚</span>
+                    <span class="catering-badge popular">POPULAR</span>
+                </div>
+                <div class="catering-card-body">
+                    <h4 data-lang-en="Afghan Rice Feast" data-lang-pt="Banquete de Arroz Afegão" data-lang-es="Banquete de Arroz Afgano">Afghan Rice Feast</h4>
+                    <p data-lang-en="Authentic Kabuli Pulao, Qabili rice with lamb, raisins and carrots. Includes side dishes and Afghan bread. Serves 30-80 guests." data-lang-pt="Autêntico Kabuli Pulao, arroz Qabili com cordeiro, passas e cenouras. Inclui acompanhamentos e pão afegão. Serve 30-80 convidados." data-lang-es="Auténtico Kabuli Pulao, arroz Qabili con cordero, pasas y zanahorias. Incluye acompañamientos y pan afgano. Para 30-80 invitados.">Authentic Kabuli Pulao, Qabili rice with lamb, raisins and carrots. Includes side dishes and Afghan bread. Serves 30-80 guests.</p>
+                    <div class="catering-card-footer">
+                        <button class="btn-interest" onclick="openInterest('ricefeast')" data-lang-en="I'm Interested" data-lang-pt="Tenho Interesse" data-lang-es="Me Interesa">I'm Interested</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="catering-card fade-in">
+                <div class="catering-card-image platter">
+                    <span>🍖</span>
+                    <span class="catering-badge new">NEW</span>
+                </div>
+                <div class="catering-card-body">
+                    <h4 data-lang-en="Mixed Grill Experience" data-lang-pt="Experiência Grelha Mista" data-lang-es="Experiencia Parrilla Mixta">Mixed Grill Experience</h4>
+                    <p data-lang-en="Chapli kebab, seekh kebab, tikka, lamb chops and grilled chicken. Full charcoal-grilled experience for 15-40 guests." data-lang-pt="Chapli kebab, seekh kebab, tikka, costeletas de cordeiro e frango grelhado. Experiência completa de churrasqueira para 15-40 convidados." data-lang-es="Chapli kebab, seekh kebab, tikka, chuletas de cordero y pollo a la parrilla. Experiencia completa a carbón para 15-40 invitados.">Chapli kebab, seekh kebab, tikka, lamb chops and grilled chicken. Full charcoal-grilled experience for 15-40 guests.</p>
+                    <div class="catering-card-footer">
+                        <button class="btn-interest" onclick="openInterest('mixedgrill')" data-lang-en="I'm Interested" data-lang-pt="Tenho Interesse" data-lang-es="Me Interesa">I'm Interested</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 4 -->
+            <div class="catering-card fade-in">
+                <div class="catering-card-image naan">
+                    <span>🫓</span>
+                </div>
+                <div class="catering-card-body">
+                    <h4 data-lang-en="Corporate Lunch Box" data-lang-pt="Marmita Corporativa" data-lang-es="Almuerzo Corporativo">Corporate Lunch Box</h4>
+                    <p data-lang-en="Individual lunch boxes with kebab wrap, rice, salad and drink. Perfect for office meetings and corporate events. Min 10 boxes." data-lang-pt="Marmitas individuais com wrap de kebab, arroz, salada e bebida. Perfeito para reuniões de escritório e eventos corporativos. Mín 10 unidades." data-lang-es="Cajas de almuerzo individuales con wrap de kebab, arroz, ensalada y bebida. Perfecto para reuniones y eventos corporativos. Mín 10 cajas.">Individual lunch boxes with kebab wrap, rice, salad and drink. Perfect for office meetings and corporate events. Min 10 boxes.</p>
+                    <div class="catering-card-footer">
+                        <button class="btn-interest" onclick="openInterest('corporate')" data-lang-en="I'm Interested" data-lang-pt="Tenho Interesse" data-lang-es="Me Interesa">I'm Interested</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 5 -->
+            <div class="catering-card fade-in">
+                <div class="catering-card-image dessert">
+                    <span>🧁</span>
+                </div>
+                <div class="catering-card-body">
+                    <h4 data-lang-en="Wedding &amp; Celebration Menu" data-lang-pt="Menu de Casamento &amp; Celebração" data-lang-es="Menú de Boda &amp; Celebración">Wedding &amp; Celebration Menu</h4>
+                    <p data-lang-en="Complete wedding menu with starters, mains, desserts and drinks. Afghan and fusion options available. 50-300 guests." data-lang-pt="Menu completo de casamento com entradas, pratos principais, sobremesas e bebidas. Opções afegãs e fusão disponíveis. 50-300 convidados." data-lang-es="Menú completo de boda con entradas, platos principales, postres y bebidas. Opciones afganas y fusión disponibles. 50-300 invitados.">Complete wedding menu with starters, mains, desserts and drinks. Afghan and fusion options available. 50-300 guests.</p>
+                    <div class="catering-card-footer">
+                        <button class="btn-interest" onclick="openInterest('wedding')" data-lang-en="I'm Interested" data-lang-pt="Tenho Interesse" data-lang-es="Me Interesa">I'm Interested</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 6 - Full Service -->
+            <div class="catering-card fade-in">
+                <div class="catering-card-image bundle">
+                    <span>⭐</span>
+                    <span class="catering-badge" style="background: var(--secondary); color: var(--primary);">VIP</span>
+                </div>
+                <div class="catering-card-body">
+                    <h4 data-lang-en="⭐ FULL SERVICE (Custom Package)" data-lang-pt="⭐ SERVIÇO COMPLETO (Pacote Personalizado)" data-lang-es="⭐ SERVICIO COMPLETO (Paquete Personalizado)">⭐ FULL SERVICE (Custom Package)</h4>
+                    <p data-lang-en="Tell us your vision — we'll create a bespoke catering solution for any event. Full staff, setup and cleanup included." data-lang-pt="Diga-nos sua visão — criaremos uma solução de buffet sob medida para qualquer evento. Equipe completa, montagem e limpeza incluídos." data-lang-es="Cuéntanos tu visión — crearemos una solución de catering a medida para cualquier evento. Personal completo, montaje y limpieza incluidos.">Tell us your vision — we'll create a bespoke catering solution for any event. Full staff, setup and cleanup included.</p>
+                    <div class="catering-card-footer">
+                        <button class="btn-interest" onclick="openInterest('fullservice')" style="background: var(--warm);" data-lang-en="I Want This!" data-lang-pt="Quero Isso!" data-lang-es="¡Lo Quiero!">I Want This!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="catering-trust fade-in">
+            <div class="trust-item"><span>📧</span> <span data-lang-en="We'll contact you" data-lang-pt="Entraremos em contato" data-lang-es="Te contactaremos">We'll contact you</span></div>
+            <div class="trust-item"><span>☪️</span> <span data-lang-en="100% Halal certified" data-lang-pt="100% Halal certificado" data-lang-es="100% Halal certificado">100% Halal certified</span></div>
+            <div class="trust-item"><span>🚚</span> <span data-lang-en="Delivery available" data-lang-pt="Entrega disponível" data-lang-es="Entrega disponible">Delivery available</span></div>
+            <div class="trust-item"><span>💬</span> <span data-lang-en="No commitment" data-lang-pt="Sem compromisso" data-lang-es="Sin compromiso">No commitment</span></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="About Chopan Kebab" data-lang-pt="Sobre o Chopan Kebab" data-lang-es="Sobre Chopan Kebab">About Chopan Kebab</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Authentic Afghan cuisine crafted with passion, tradition, and the finest halal ingredients." data-lang-pt="Culinária afegã autêntica feita com paixão, tradição e os melhores ingredientes halal." data-lang-es="Cocina afgana auténtica elaborada con pasión, tradición y los mejores ingredientes halal.">Authentic Afghan cuisine crafted with passion, tradition, and the finest halal ingredients.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-image fade-in"></div>
+            <div class="about-content fade-in">
+                <h3 data-lang-en="Bringing Afghan Flavours Since 2017" data-lang-pt="Trazendo Sabores Afegãos Desde 2017" data-lang-es="Trayendo Sabores Afganos Desde 2017">Bringing Afghan Flavours Since 2017</h3>
+                <p data-lang-en="Chopan Kebab was founded in Edgware with a passion for sharing authentic Afghan cuisine. Our name 'Chopan' means shepherd — representing the simplicity and richness of traditional Afghan cooking." data-lang-pt="O Chopan Kebab foi fundado em Edgware com a paixão de compartilhar a culinária afegã autêntica. Nosso nome 'Chopan' significa pastor — representando a simplicidade e riqueza da cozinha afegã tradicional." data-lang-es="Chopan Kebab fue fundado en Edgware con la pasión de compartir la auténtica cocina afgana. Nuestro nombre 'Chopan' significa pastor — representando la simplicidad y riqueza de la cocina afgana tradicional.">Chopan Kebab was founded in Edgware with a passion for sharing authentic Afghan cuisine. Our name 'Chopan' means shepherd — representing the simplicity and richness of traditional Afghan cooking.</p>
+                <p data-lang-en="Every dish is prepared fresh using traditional recipes passed down through generations. We use only the finest halal meats, fresh vegetables, and authentic Afghan spices to create flavours that transport you straight to Kabul." data-lang-pt="Cada prato é preparado fresco usando receitas tradicionais passadas de geração em geração. Usamos apenas as melhores carnes halal, vegetais frescos e especiarias afegãs autênticas para criar sabores que transportam você direto para Cabul." data-lang-es="Cada plato se prepara fresco usando recetas tradicionales transmitidas de generación en generación. Usamos solo las mejores carnes halal, vegetales frescos y especias afganas auténticas para crear sabores que te transportan directamente a Kabul.">Every dish is prepared fresh using traditional recipes passed down through generations. We use only the finest halal meats, fresh vegetables, and authentic Afghan spices to create flavours that transport you straight to Kabul.</p>
+                <p data-lang-en="Whether you're dining in, ordering takeaway, or booking our catering for your special event — we promise an unforgettable experience of Afghan hospitality and flavour." data-lang-pt="Seja jantando conosco, fazendo um pedido para viagem ou reservando nosso buffet para seu evento especial — prometemos uma experiência inesquecível de hospitalidade e sabor afegão." data-lang-es="Ya sea que cenes con nosotros, pidas para llevar o reserves nuestro catering para tu evento especial — prometemos una experiencia inolvidable de hospitalidad y sabor afgano.">Whether you're dining in, ordering takeaway, or booking our catering for your special event — we promise an unforgettable experience of Afghan hospitality and flavour.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="number">2017</div>
+                        <div class="label" data-lang-en="Founded" data-lang-pt="Fundado" data-lang-es="Fundado">Founded</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">100%</div>
+                        <div class="label">Halal</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">10K+</div>
+                        <div class="label" data-lang-en="Meals Served" data-lang-pt="Refeições Servidas" data-lang-es="Comidas Servidas">Meals Served</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section menu" id="menu">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="Our Menu Highlights" data-lang-pt="Destaques do Cardápio" data-lang-es="Destacados del Menú">Our Menu Highlights</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="A taste of our most popular dishes — all freshly prepared with traditional Afghan recipes and 100% halal ingredients." data-lang-pt="Uma amostra dos nossos pratos mais populares — todos preparados na hora com receitas afegãs tradicionais e ingredientes 100% halal." data-lang-es="Una muestra de nuestros platos más populares — todos preparados al momento con recetas afganas tradicionales e ingredientes 100% halal.">A taste of our most popular dishes — all freshly prepared with traditional Afghan recipes and 100% halal ingredients.</p>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card fade-in">
+                <span class="menu-icon">🥙</span>
+                <h3 data-lang-en="Lamb Chopan Kebab" data-lang-pt="Kebab Chopan de Cordeiro" data-lang-es="Kebab Chopan de Cordero">Lamb Chopan Kebab</h3>
+                <p data-lang-en="Tender marinated lamb chops grilled over charcoal to perfection. Served with fresh naan and chutneys." data-lang-pt="Costeletas de cordeiro marinadas e grelhadas no carvão à perfeição. Servido com naan fresco e chutneys." data-lang-es="Chuletas de cordero marinadas y asadas a la perfección sobre carbón. Servidas con naan fresco y chutneys.">Tender marinated lamb chops grilled over charcoal to perfection. Served with fresh naan and chutneys.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <span class="menu-icon">🍚</span>
+                <h3 data-lang-en="Kabuli Pulao" data-lang-pt="Kabuli Pulao" data-lang-es="Kabuli Pulao">Kabuli Pulao</h3>
+                <p data-lang-en="Afghanistan's national dish — fragrant rice with tender lamb, caramelised carrots and sweet raisins. A must-try." data-lang-pt="O prato nacional do Afeganistão — arroz aromático com cordeiro macio, cenouras caramelizadas e passas doces. Imperdível." data-lang-es="El plato nacional de Afganistán — arroz aromático con tierno cordero, zanahorias caramelizadas y pasas dulces. Imprescindible.">Afghanistan's national dish — fragrant rice with tender lamb, caramelised carrots and sweet raisins. A must-try.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <span class="menu-icon">🍖</span>
+                <h3 data-lang-en="Chapli Kebab" data-lang-pt="Chapli Kebab" data-lang-es="Chapli Kebab">Chapli Kebab</h3>
+                <p data-lang-en="Spiced minced meat patties with tomatoes, coriander and green chillies. Crispy on the outside, juicy inside." data-lang-pt="Hambúrgueres de carne moída temperada com tomates, coentro e pimentas verdes. Crocante por fora, suculento por dentro." data-lang-es="Hamburguesas de carne picada especiada con tomates, cilantro y chiles verdes. Crujientes por fuera, jugosas por dentro.">Spiced minced meat patties with tomatoes, coriander and green chillies. Crispy on the outside, juicy inside.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <span class="menu-icon">🫓</span>
+                <h3 data-lang-en="Fresh Afghan Naan" data-lang-pt="Naan Afegão Fresco" data-lang-es="Naan Afgano Fresco">Fresh Afghan Naan</h3>
+                <p data-lang-en="Baked fresh to order in our traditional oven. Soft, fluffy and perfect for scooping up our signature dishes." data-lang-pt="Assado fresco sob encomenda no nosso forno tradicional. Macio, fofinho e perfeito para acompanhar nossos pratos." data-lang-es="Horneado fresco al momento en nuestro horno tradicional. Suave, esponjoso y perfecto para acompañar nuestros platos.">Baked fresh to order in our traditional oven. Soft, fluffy and perfect for scooping up our signature dishes.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <span class="menu-icon">🥗</span>
+                <h3 data-lang-en="Bolani &amp; Mantu" data-lang-pt="Bolani &amp; Mantu" data-lang-es="Bolani &amp; Mantu">Bolani &amp; Mantu</h3>
+                <p data-lang-en="Traditional Afghan starters — stuffed flatbread with leeks/potato and steamed dumplings with spiced lamb and yoghurt sauce." data-lang-pt="Entradas afegãs tradicionais — pão recheado com alho-poró/batata e dumplings cozidos no vapor com cordeiro e molho de iogurte." data-lang-es="Entrantes afganos tradicionales — pan relleno de puerro/patata y dumplings al vapor con cordero especiado y salsa de yogur.">Traditional Afghan starters — stuffed flatbread with leeks/potato and steamed dumplings with spiced lamb and yoghurt sauce.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <span class="menu-icon">🍨</span>
+                <h3 data-lang-en="Firni &amp; Sheer Yakh" data-lang-pt="Firni &amp; Sheer Yakh" data-lang-es="Firni &amp; Sheer Yakh">Firni &amp; Sheer Yakh</h3>
+                <p data-lang-en="Traditional Afghan desserts — creamy milk pudding with cardamom and pistachios, plus our homemade Afghan ice cream." data-lang-pt="Sobremesas afegãs tradicionais — pudim cremoso de leite com cardamomo e pistache, mais nosso sorvete afegão caseiro." data-lang-es="Postres afganos tradicionales — pudín cremoso de leche con cardamomo y pistachos, más nuestro helado afgano casero.">Traditional Afghan desserts — creamy milk pudding with cardamom and pistachios, plus our homemade Afghan ice cream.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="What Our Customers Say" data-lang-pt="O Que Nossos Clientes Dizem" data-lang-es="Lo Que Dicen Nuestros Clientes">What Our Customers Say</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Don't just take our word for it — hear from people who love our authentic Afghan food." data-lang-pt="Não acredite apenas em nós — veja o que dizem as pessoas que amam nossa comida afegã autêntica." data-lang-es="No solo confíes en nosotros — escucha a quienes aman nuestra auténtica comida afgana.">Don't just take our word for it — hear from people who love our authentic Afghan food.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p data-lang-en="&quot;The best kebabs in North London, hands down! The lamb chopan is absolutely incredible. Authentic flavours that remind me of home.&quot;" data-lang-pt="&quot;Os melhores kebabs do Norte de Londres, sem dúvida! O cordeiro chopan é absolutamente incrível. Sabores autênticos que me lembram de casa.&quot;" data-lang-es="&quot;¡Los mejores kebabs del norte de Londres, sin duda! El cordero chopan es absolutamente increíble. Sabores auténticos que me recuerdan a casa.&quot;">"The best kebabs in North London, hands down! The lamb chopan is absolutely incredible. Authentic flavours that remind me of home."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">A</div>
+                    <div>
+                        <div class="name">Ahmed K.</div>
+                        <div class="location">Edgware, London</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p data-lang-en="&quot;We booked their catering for our wedding and it was phenomenal. 200 guests and everyone was raving about the food. The Kabuli Pulao was the star!&quot;" data-lang-pt="&quot;Contratamos o buffet deles para nosso casamento e foi fenomenal. 200 convidados e todos elogiaram a comida. O Kabuli Pulao foi a estrela!&quot;" data-lang-es="&quot;Contratamos su catering para nuestra boda y fue fenomenal. 200 invitados y todos elogiaban la comida. ¡El Kabuli Pulao fue la estrella!&quot;">"We booked their catering for our wedding and it was phenomenal. 200 guests and everyone was raving about the food. The Kabuli Pulao was the star!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">S</div>
+                    <div>
+                        <div class="name">Sarah M.</div>
+                        <div class="location">Harrow, London</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p data-lang-en="&quot;Ordered the corporate lunch boxes for our office event. Everything arrived on time, beautifully presented and absolutely delicious. Will definitely order again!&quot;" data-lang-pt="&quot;Pedi as marmitas corporativas para nosso evento do escritório. Tudo chegou no horário, lindamente apresentado e absolutamente delicioso. Com certeza pedirei de novo!&quot;" data-lang-es="&quot;Pedí las cajas de almuerzo corporativas para nuestro evento de oficina. Todo llegó a tiempo, bellamente presentado y absolutamente delicioso. ¡Definitivamente pediré de nuevo!&quot;">"Ordered the corporate lunch boxes for our office event. Everything arrived on time, beautifully presented and absolutely delicious. Will definitely order again!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">J</div>
+                    <div>
+                        <div class="name">James P.</div>
+                        <div class="location">Stanmore, London</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="Get In Touch" data-lang-pt="Entre em Contato" data-lang-es="Contáctenos">Get In Touch</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Whether you'd like to ask about catering, make a reservation, or simply say hello — we'd love to hear from you." data-lang-pt="Se você deseja perguntar sobre buffet, fazer uma reserva ou simplesmente dizer olá — adoraríamos ouvir de você." data-lang-es="Ya sea para preguntar sobre catering, hacer una reserva o simplemente saludar — nos encantaría saber de ti.">Whether you'd like to ask about catering, make a reservation, or simply say hello — we'd love to hear from you.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <h3 data-lang-en="Visit Us" data-lang-pt="Visite-nos" data-lang-es="Visítanos">Visit Us</h3>
+                <p data-lang-en="We're located in Edgware, easily accessible from the A41 and Edgware tube station. Walk-ins welcome or call ahead for large orders." data-lang-pt="Estamos localizados em Edgware, facilmente acessível pela A41 e estação de metrô Edgware. Aceitos sem reserva ou ligue para pedidos grandes." data-lang-es="Estamos ubicados en Edgware, fácilmente accesible desde la A41 y la estación de metro Edgware. Sin reserva o llama para pedidos grandes.">We're located in Edgware, easily accessible from the A41 and Edgware tube station. Walk-ins welcome or call ahead for large orders.</p>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-text">
+                        <div class="title" data-lang-en="Address" data-lang-pt="Endereço" data-lang-es="Dirección">Address</div>
+                        <div class="detail">Liberty House, 30 Whitchurch Lane<br>Edgware<br>United Kingdom HA8 6LE</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📞</div>
+                    <div class="contact-item-text">
+                        <div class="title" data-lang-en="Telephone" data-lang-pt="Telefone" data-lang-es="Teléfono">Telephone</div>
+                        <div class="detail">020 XXXX XXXX</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">✉️</div>
+                    <div class="contact-item-text">
+                        <div class="title">Email</div>
+                        <div class="detail">info@chopankebab.co.uk</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">🕐</div>
+                    <div class="contact-item-text">
+                        <div class="title" data-lang-en="Hours" data-lang-pt="Horário" data-lang-es="Horario">Hours</div>
+                        <div class="detail" data-lang-en="Mon - Sun: 11:00 - 23:00" data-lang-pt="Seg - Dom: 11:00 - 23:00" data-lang-es="Lun - Dom: 11:00 - 23:00">Mon - Sun: 11:00 - 23:00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form fade-in">
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name" data-lang-en="Your Name" data-lang-pt="Seu Nome" data-lang-es="Tu Nombre">Your Name</label>
+                        <input type="text" id="name" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-lang-en="Email Address" data-lang-pt="Endereço de Email" data-lang-es="Correo Electrónico">Email Address</label>
+                        <input type="email" id="email" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" data-lang-en="Subject" data-lang-pt="Assunto" data-lang-es="Asunto">Subject</label>
+                        <input type="text" id="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-lang-en="Message" data-lang-pt="Mensagem" data-lang-es="Mensaje">Message</label>
+                        <textarea id="message" required=""></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-lang-en="Send Message" data-lang-pt="Enviar Mensagem" data-lang-es="Enviar Mensaje">Send Message</button>
+                </form>
+                <p id="formSuccess" style="display:none; color: green; text-align: center; margin-top: 1rem; font-weight: 600;" data-lang-en="✓ Thank you! We'll be in touch shortly." data-lang-pt="✓ Obrigado! Entraremos em contato em breve." data-lang-es="✓ ¡Gracias! Nos pondremos en contacto pronto.">✓ Thank you! We'll be in touch shortly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Chopan Kebab</h3>
+                <p data-lang-en="Authentic Afghan cuisine and catering services in Edgware, London. From kebabs to full event catering, we bring the rich flavours of Afghanistan to your table." data-lang-pt="Culinária afegã autêntica e serviços de buffet em Edgware, Londres. De kebabs a buffet completo para eventos, trazemos os sabores ricos do Afeganistão à sua mesa." data-lang-es="Cocina afgana auténtica y servicios de catering en Edgware, Londres. Desde kebabs hasta catering completo para eventos, llevamos los ricos sabores de Afganistán a tu mesa.">Authentic Afghan cuisine and catering services in Edgware, London. From kebabs to full event catering, we bring the rich flavours of Afghanistan to your table.</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-lang-en="Quick Links" data-lang-pt="Links Rápidos" data-lang-es="Enlaces Rápidos">Quick Links</h4>
+                <a href="#home" data-lang-en="Home" data-lang-pt="Início" data-lang-es="Inicio">Home</a>
+                <a href="#catering" data-lang-en="Catering" data-lang-pt="Buffet" data-lang-es="Catering">Catering</a>
+                <a href="#about" data-lang-en="About Us" data-lang-pt="Sobre Nós" data-lang-es="Sobre Nosotros">About Us</a>
+                <a href="#menu" data-lang-en="Menu" data-lang-pt="Cardápio" data-lang-es="Menú">Menu</a>
+                <a href="#contact" data-lang-en="Contact" data-lang-pt="Contato" data-lang-es="Contacto">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="#" onclick="openModal('privacy'); return false;" data-lang-en="Privacy Policy" data-lang-pt="Política de Privacidade" data-lang-es="Política de Privacidad">Privacy Policy</a>
+                <a href="#" onclick="openModal('terms'); return false;" data-lang-en="Terms of Use" data-lang-pt="Termos de Uso" data-lang-es="Términos de Uso">Terms of Use</a>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <div class="footer-legal-info">
+                <strong>CHOPAN KEBAB LIMITED</strong><br>
+                Company Number: 10926394<br>
+                Registered Office: LIBERTY HOUSE, 30 WHITCHURCH LANE, EDGWARE, UNITED KINGDOM HA8 6LE<br>
+                SIC Code: 56103 (Take-away food shops and mobile food stands)<br>
+                Incorporated under the Companies Act 2006 | Private company limited by shares | Registered in England and Wales
+            </div>
+            <div class="footer-copyright">
+                © 2026 Chopan Kebab Limited - All rights reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('privacy')">✕</button>
+            <h2>Privacy Policy</h2>
+            <p><strong>Last updated:</strong> January 2026</p>
+            <p><strong>CHOPAN KEBAB LIMITED</strong> (Company Number: 10926394), registered at Liberty House, 30 Whitchurch Lane, Edgware, United Kingdom HA8 6LE, is committed to protecting your privacy and personal data.</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>We may collect personal information that you voluntarily provide when you contact us, register interest in our catering services, place an order, or subscribe to communications. This may include your name, email address, telephone number and delivery address.</p>
+
+            <h3>2. How We Use Your Information</h3>
+            <p>We use your personal data to respond to enquiries, contact you regarding catering packages you've expressed interest in, process orders, improve our services, and send you information about our products where you have given consent. We will never sell or share your information with third parties for marketing purposes.</p>
+
+            <h3>3. Interest Registration</h3>
+            <p>When you register interest in a catering package, your email address is stored securely so our team can contact you with details, pricing and availability. You can request removal of your data at any time.</p>
+
+            <h3>4. Data Storage and Security</h3>
+            <p>Your data is stored securely and we implement appropriate technical measures to protect against unauthorised access. We retain personal data only for as long as necessary to fulfil the purposes for which it was collected.</p>
+
+            <h3>5. Your Rights</h3>
+            <p>Under UK GDPR, you have the right to access, rectify, erase, or restrict processing of your personal data. You may also object to processing or request data portability. To exercise any of these rights, please contact us at info@chopankebab.co.uk.</p>
+
+            <h3>6. Contact</h3>
+            <p>For any privacy-related enquiries, please contact:<br>
+            CHOPAN KEBAB LIMITED<br>
+            Liberty House, 30 Whitchurch Lane, Edgware, HA8 6LE<br>
+            Email: info@chopankebab.co.uk</p>
+        </div>
+    </div>
+
+    <!-- Terms of Use Modal -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('terms')">✕</button>
+            <h2>Terms of Use</h2>
+            <p><strong>Last updated:</strong> January 2026</p>
+            <p>These terms govern your use of the website and services from <strong>CHOPAN KEBAB LIMITED</strong> (Company Number: 10926394), a private company limited by shares registered in England and Wales.</p>
+
+            <h3>1. Company Information</h3>
+            <p>CHOPAN KEBAB LIMITED<br>
+            Company Number: 10926394<br>
+            Registered Office: Liberty House, 30 Whitchurch Lane, Edgware, United Kingdom HA8 6LE<br>
+            Incorporated: 22nd August 2017 under the Companies Act 2006<br>
+            SIC Code: 56103</p>
+
+            <h3>2. Services</h3>
+            <p>We provide takeaway food, dine-in and catering services. Registering interest on our website does not constitute a binding order. Our team will contact you with full details including pricing, availability and payment options.</p>
+
+            <h3>3. Food Safety &amp; Allergens</h3>
+            <p>All our food is prepared in accordance with UK food safety regulations. All meats are 100% Halal certified. Our kitchen handles nuts, dairy, gluten and other allergens. Please inform us of any allergies when placing an order.</p>
+
+            <h3>4. Interest Registration</h3>
+            <p>Registering interest in a catering package does not constitute a purchase or binding agreement. Our team will contact you with full details including pricing, menu options and terms.</p>
+
+            <h3>5. Limitation of Liability</h3>
+            <p>To the fullest extent permitted by law, Chopan Kebab Limited shall not be liable for any indirect, incidental, or consequential damages arising from the use of this website or our services.</p>
+
+            <h3>6. Governing Law</h3>
+            <p>These terms shall be governed by and construed in accordance with the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the English courts.</p>
+
+            <h3>7. Contact</h3>
+            <p>For any enquiries regarding these terms, please contact:<br>
+            CHOPAN KEBAB LIMITED<br>
+            Liberty House, 30 Whitchurch Lane, Edgware, HA8 6LE<br>
+            Email: info@chopankebab.co.uk</p>
+        </div>
+    </div>
+
+    <!-- Interest Modal -->
+    <div class="modal-overlay interest-modal" id="interestModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeInterest()">✕</button>
+            <div class="item-detail-icon" id="interestIcon">🥙</div>
+            <h2 id="interestTitle">Kebab Platter Package</h2>
+            <p id="interestDesc" style="color: var(--gray);">Our finest selection for your event.</p>
+            <div class="interest-info">
+                <div data-lang-en="We'll contact you with full pricing &amp; details" data-lang-pt="Entraremos em contato com preços e detalhes completos" data-lang-es="Te contactaremos con precios y detalles completos">We'll contact you with full pricing &amp; details</div>
+                <div data-lang-en="100% Halal certified ingredients" data-lang-pt="Ingredientes 100% Halal certificados" data-lang-es="Ingredientes 100% Halal certificados">100% Halal certified ingredients</div>
+                <div data-lang-en="Customisable to your preferences" data-lang-pt="Personalizável conforme suas preferências" data-lang-es="Personalizable según tus preferencias">Customisable to your preferences</div>
+                <div data-lang-en="Delivery and setup available" data-lang-pt="Entrega e montagem disponíveis" data-lang-es="Entrega y montaje disponibles">Delivery and setup available</div>
+                <div data-lang-en="No commitment — just register your interest" data-lang-pt="Sem compromisso — apenas registre seu interesse" data-lang-es="Sin compromiso — solo registra tu interés">No commitment — just register your interest</div>
+            </div>
+            <div class="form-group">
+                <label for="interestEmail" data-lang-en="Your email (so we can contact you):" data-lang-pt="Seu email (para entrarmos em contato):" data-lang-es="Tu email (para contactarte):">Your email (so we can contact you):</label>
+                <input type="email" id="interestEmail" placeholder="email@example.com" required="">
+            </div>
+            <button class="btn btn-success" onclick="submitInterest()" data-lang-en="📬 Register My Interest" data-lang-pt="📬 Registrar Meu Interesse" data-lang-es="📬 Registrar Mi Interés">📬 Register My Interest</button>
+            <p style="font-size: 0.8rem; color: var(--gray); margin-top: 1rem;" data-lang-en="No commitment. We'll reach out to you shortly with all the information." data-lang-pt="Sem compromisso. Entraremos em contato em breve com todas as informações." data-lang-es="Sin compromiso. Te contactaremos pronto con toda la información.">No commitment. We'll reach out to you shortly with all the information.</p>
+        </div>
+    </div>
+
+    <script>
+        // ===== LANGUAGE SYSTEM =====
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('[data-lang-' + lang + ']').forEach(el => {
+                const text = el.getAttribute('data-lang-' + lang);
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = text;
+                } else {
+                    el.innerHTML = text;
+                }
+            });
+        }
+
+        // ===== MOBILE MENU =====
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== CONTACT FORM =====
+        function handleSubmit(e) {
+            e.preventDefault();
+            document.getElementById('formSuccess').style.display = 'block';
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('formSuccess').style.display = 'none';
+            }, 5000);
+        }
+
+        // ===== MODALS =====
+        function openModal(type) {
+            if (type === 'privacy') {
+                document.getElementById('privacyModal').classList.add('active');
+            } else {
+                document.getElementById('termsModal').classList.add('active');
+            }
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(type) {
+            if (type === 'privacy') {
+                document.getElementById('privacyModal').classList.remove('active');
+            } else {
+                document.getElementById('termsModal').classList.remove('active');
+            }
+            document.body.style.overflow = '';
+        }
+
+        // ===== INTEREST / WISHLIST SYSTEM =====
+        const packages = {
+            kebabplatter: {
+                icon: '🥙',
+                title: { en: 'Kebab Platter Package', pt: 'Pacote Travessa de Kebab', es: 'Paquete Bandeja de Kebab' },
+                desc: { en: 'Selection of lamb and chicken kebabs with naan, salads and sauces. Serves 20-50 guests.', pt: 'Seleção de kebabs de cordeiro e frango com naan, saladas e molhos. Serve 20-50 convidados.', es: 'Selección de kebabs de cordero y pollo con naan, ensaladas y salsas. Para 20-50 invitados.' }
+            },
+            ricefeast: {
+                icon: '🍚',
+                title: { en: 'Afghan Rice Feast', pt: 'Banquete de Arroz Afegão', es: 'Banquete de Arroz Afgano' },
+                desc: { en: 'Authentic Kabuli Pulao with lamb, raisins and carrots. Includes sides and Afghan bread. Serves 30-80 guests.', pt: 'Autêntico Kabuli Pulao com cordeiro, passas e cenouras. Inclui acompanhamentos e pão afegão. Serve 30-80 convidados.', es: 'Auténtico Kabuli Pulao con cordero, pasas y zanahorias. Incluye acompañamientos y pan afgano. Para 30-80 invitados.' }
+            },
+            mixedgrill: {
+                icon: '🍖',
+                title: { en: 'Mixed Grill Experience', pt: 'Experiência Grelha Mista', es: 'Experiencia Parrilla Mixta' },
+                desc: { en: 'Chapli kebab, seekh kebab, tikka, lamb chops and grilled chicken. Full charcoal experience for 15-40 guests.', pt: 'Chapli kebab, seekh kebab, tikka, costeletas de cordeiro e frango grelhado. Experiência de carvão para 15-40 convidados.', es: 'Chapli kebab, seekh kebab, tikka, chuletas de cordero y pollo a la parrilla. Experiencia a carbón para 15-40 invitados.' }
+            },
+            corporate: {
+                icon: '🫓',
+                title: { en: 'Corporate Lunch Box', pt: 'Marmita Corporativa', es: 'Almuerzo Corporativo' },
+                desc: { en: 'Individual lunch boxes with kebab wrap, rice, salad and drink. Perfect for office events. Min 10 boxes.', pt: 'Marmitas individuais com wrap de kebab, arroz, salada e bebida. Perfeito para eventos corporativos. Mín 10 unidades.', es: 'Cajas de almuerzo individuales con wrap de kebab, arroz, ensalada y bebida. Perfecto para eventos de oficina. Mín 10 cajas.' }
+            },
+            wedding: {
+                icon: '🧁',
+                title: { en: 'Wedding & Celebration Menu', pt: 'Menu de Casamento & Celebração', es: 'Menú de Boda & Celebración' },
+                desc: { en: 'Complete menu with starters, mains, desserts and drinks. Afghan and fusion options. 50-300 guests.', pt: 'Menu completo com entradas, pratos principais, sobremesas e bebidas. Opções afegãs e fusão. 50-300 convidados.', es: 'Menú completo con entradas, platos principales, postres y bebidas. Opciones afganas y fusión. 50-300 invitados.' }
+            },
+            fullservice: {
+                icon: '⭐',
+                title: { en: '⭐ Full Service - Custom Package', pt: '⭐ Serviço Completo - Pacote Personalizado', es: '⭐ Servicio Completo - Paquete Personalizado' },
+                desc: { en: 'Bespoke catering for any event. Full staff, setup and cleanup included. Tell us your vision!', pt: 'Buffet sob medida para qualquer evento. Equipe completa, montagem e limpeza incluídos. Diga-nos sua visão!', es: 'Catering a medida para cualquier evento. Personal completo, montaje y limpieza incluidos. ¡Cuéntanos tu visión!' }
+            }
+        };
+
+        function openInterest(packageId) {
+            const pkg = packages[packageId];
+            document.getElementById('interestIcon').textContent = pkg.icon;
+            document.getElementById('interestTitle').textContent = pkg.title[currentLang] || pkg.title.en;
+            document.getElementById('interestDesc').textContent = pkg.desc[currentLang] || pkg.desc.en;
+            document.getElementById('interestModal').classList.add('active');
+            document.getElementById('interestEmail').value = '';
+            document.getElementById('interestEmail').style.borderColor = '#e5e7eb';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInterest() {
+            document.getElementById('interestModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function submitInterest() {
+            const email = document.getElementById('interestEmail').value;
+            if (!email || !email.includes('@')) {
+                document.getElementById('interestEmail').style.borderColor = 'red';
+                return;
+            }
+            
+            const title = document.getElementById('interestTitle').textContent;
+            
+            let msg = '';
+            let heading = '';
+            if (currentLang === 'pt') {
+                heading = 'Interesse Registrado!';
+                msg = `Obrigado! Recebemos seu interesse em "<strong>${title}</strong>". Nossa equipe entrará em contato pelo email <strong>${email}</strong> em breve com todos os detalhes e preços.`;
+            } else if (currentLang === 'es') {
+                heading = '¡Interés Registrado!';
+                msg = `¡Gracias! Recibimos tu interés en "<strong>${title}</strong>". Nuestro equipo te contactará por email a <strong>${email}</strong> pronto con todos los detalles y precios.`;
+            } else {
+                heading = 'Interest Registered!';
+                msg = `Thank you! We've received your interest in "<strong>${title}</strong>". Our team will contact you at <strong>${email}</strong> shortly with full pricing and details.`;
+            }
+            
+            document.getElementById('interestModal').querySelector('.modal-content').innerHTML = `
+                <div style="text-align: center; padding: 2rem 0;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+                    <h2 style="color: var(--success); margin-bottom: 1rem;">${heading}</h2>
+                    <p style="color: var(--gray); margin-bottom: 2rem; font-size: 1.05rem;">${msg}</p>
+                    <button class="btn btn-primary" onclick="closeInterest(); setTimeout(()=>location.reload(), 100);">${currentLang === 'pt' ? 'Fechar' : currentLang === 'es' ? 'Cerrar' : 'Close'}</button>
+                </div>
+            `;
+        }
+
+        // Close modals on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+
+
+</body></html>
