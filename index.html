@@ -1,0 +1,1980 @@
+<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Karwan Restaurant - Authentic Middle Eastern &amp; Kurdish recipe e-books and digital guides. Cook traditional dishes at home with our step-by-step digital recipes.">
+    <meta name="keywords" content="Karwan Restaurant, recipe e-books, digital recipes, Kurdish food, Middle Eastern cuisine, traditional recipes, cookbook download">
+    <meta name="author" content="Karwan Restaurant Limited">
+    <meta name="geo.region" content="GB-ENG">
+    <meta name="geo.placename" content="Datchet, Slough">
+    <title>Karwan Restaurant | Authentic Digital Recipe Collections</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' rx='15' fill='%23b45309'/&gt;&lt;text x='50' y='68' font-size='55' font-family='Georgia,serif' fill='%23fef3c7' text-anchor='middle' font-weight='bold'&gt;K&lt;/text&gt;&lt;/svg&gt;">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #b45309;
+            --primary-light: #d97706;
+            --secondary: #fef3c7;
+            --accent: #92400e;
+            --cream: #fffbeb;
+            --dark: #1a1a1a;
+            --gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --success: #10b981;
+            --warm: #ea580c;
+            --spice: #d97706;
+            --gold: #f59e0b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Language Switcher */
+        .lang-bar {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 5px;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--gray);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--light-gray);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(180, 83, 9, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-logo span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-logo .highlight {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #451a03 0%, var(--primary) 40%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(254, 243, 199, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(254, 243, 199, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(254, 243, 199, 0.15);
+            border: 1px solid rgba(254, 243, 199, 0.3);
+            color: var(--secondary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .highlight {
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #fde68a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(254, 243, 199, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-outline:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-accent:hover {
+            background: #78350f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(146, 64, 14, 0.3);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--gold);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* SHOP SECTION */
+        .shop {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fffbeb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shop::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--primary), var(--gold));
+        }
+
+        .shop-banner {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            box-shadow: 0 20px 40px rgba(180, 83, 9, 0.2);
+        }
+
+        .shop-banner-text h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .shop-banner-text p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+        }
+
+        .shop-banner .btn {
+            white-space: nowrap;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .shop-banner .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .shop-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .shop-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .shop-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .shop-card-image {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+        }
+
+        .shop-card-image.kebab { background: linear-gradient(135deg, #ff6b35, #f7c59f); }
+        .shop-card-image.rice { background: linear-gradient(135deg, #f4e285, #d4a017); }
+        .shop-card-image.platter { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+        .shop-card-image.bread { background: linear-gradient(135deg, #deb887, #d2691e); }
+        .shop-card-image.dessert { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .shop-card-image.bundle { background: linear-gradient(135deg, var(--gold), #ff6b6b); }
+
+        .shop-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--primary);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .shop-badge.popular {
+            background: var(--success);
+        }
+
+        .shop-badge.new {
+            background: var(--warm);
+        }
+
+        .shop-card-body {
+            padding: 1.5rem;
+        }
+
+        .shop-card-body h4 {
+            font-size: 1.15rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .shop-card-body p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .shop-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .shop-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .shop-price .original {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-left: 6px;
+        }
+
+        .btn-buy {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-buy:hover {
+            background: var(--primary-light);
+            transform: scale(1.05);
+        }
+
+        .shop-format {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--light-gray);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--gray);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .shop-trust {
+            max-width: 800px;
+            margin: 2.5rem auto 0;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .trust-item span {
+            font-size: 1.3rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--cream);
+        }
+
+        .about-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '📖';
+            font-size: 8rem;
+            opacity: 0.9;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-item .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-item .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Recipes Preview Section */
+        .recipes {
+            background: #fff;
+        }
+
+        .recipes-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .recipe-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--gold);
+        }
+
+        .recipe-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .recipe-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .recipe-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .testimonials .section-header h2 {
+            color: #fff;
+        }
+
+        .testimonials .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .testimonials-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .testimonial-stars {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            color: rgba(255,255,255,0.85);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author .name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author .location {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--light-gray);
+        }
+
+        .steps-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .step-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .step-item h4 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-item p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--cream);
+        }
+
+        .contact-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .contact-item-text .title {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .contact-item-text .detail {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            color: #fff;
+        }
+
+        .footer-links a {
+            display: block;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-legal {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-legal-info {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.82rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-legal-info strong {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-copyright {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 16px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 3rem;
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: var(--light-gray);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: #e5e7eb;
+        }
+
+        /* Purchase Modal */
+        .purchase-modal .modal-content {
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .purchase-modal .item-detail-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .purchase-modal .modal-content h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .purchase-modal .purchase-info {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+        }
+
+        .purchase-modal .purchase-info div {
+            padding: 0.4rem 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .purchase-modal .purchase-info div::before {
+            content: '✓ ';
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .purchase-modal .btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+        }
+
+        .purchase-modal .price-display {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recipes-grid,
+            .testimonials-grid,
+            .shop-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 280px;
+            }
+
+            .shop-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+
+            .stat-item .number {
+                font-size: 1.4rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+
+            .lang-bar {
+                top: 75px;
+                right: 10px;
+            }
+
+            .shop-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .shop-trust {
+                gap: 1.5rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (min-width: 501px) and (max-width: 900px) {
+            .shop-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 700px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse-btn {
+            animation: pulse 2s infinite;
+        }
+
+        .pulse-btn:hover {
+            animation: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-bar">
+        <button class="lang-btn active" onclick="setLang('en')">🇬🇧 EN</button>
+        <button class="lang-btn" onclick="setLang('pt')">🇧🇷 PT</button>
+        <button class="lang-btn" onclick="setLang('es')">🇪🇸 ES</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#fef3c7"></rect>
+                    <text x="20" y="27" font-size="20" font-family="Georgia,serif" fill="#b45309" text-anchor="middle" font-weight="bold">K</text>
+                </svg>
+                <span>Karwan <span class="highlight">Restaurant</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-lang-en="Home" data-lang-pt="Início" data-lang-es="Inicio">Home</a></li>
+                <li><a href="#shop" data-lang-en="Recipe Shop" data-lang-pt="Loja de Receitas" data-lang-es="Tienda de Recetas">Recipe Shop</a></li>
+                <li><a href="#about" data-lang-en="About" data-lang-pt="Sobre" data-lang-es="Nosotros">About</a></li>
+                <li><a href="#recipes" data-lang-en="Recipes" data-lang-pt="Receitas" data-lang-es="Recetas">Recipes</a></li>
+                <li><a href="#testimonials" data-lang-en="Reviews" data-lang-pt="Avaliações" data-lang-es="Reseñas">Reviews</a></li>
+                <li><a href="#contact" data-lang-en="Contact" data-lang-pt="Contato" data-lang-es="Contacto">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge" data-lang-en="📖 Authentic Recipe E-Books" data-lang-pt="📖 E-Books de Receitas Autênticas" data-lang-es="📖 E-Books de Recetas Auténticas">📖 Authentic Recipe E-Books</div>
+            <h1 data-lang-en="Cook Authentic &lt;span class='highlight'&gt;Traditional Dishes&lt;/span&gt; At Home" data-lang-pt="Cozinhe Pratos &lt;span class='highlight'&gt;Tradicionais Autênticos&lt;/span&gt; Em Casa" data-lang-es="Cocina Platos &lt;span class='highlight'&gt;Tradicionales Auténticos&lt;/span&gt; En Casa">Cook Authentic <span class="highlight">Traditional Dishes</span> At Home</h1>
+            <p data-lang-en="Download our professionally crafted recipe e-books and bring the rich flavours of authentic Middle Eastern and Kurdish cuisine to your kitchen. Instant digital delivery." data-lang-pt="Baixe nossos e-books de receitas profissionalmente elaborados e traga os sabores ricos da culinária autêntica do Oriente Médio e curda para sua cozinha. Entrega digital instantânea." data-lang-es="Descarga nuestros e-books de recetas profesionalmente elaborados y lleva los ricos sabores de la auténtica cocina del Medio Oriente y kurda a tu cocina. Entrega digital instantánea.">Download our professionally crafted recipe e-books and bring the rich flavours of authentic Middle Eastern and Kurdish cuisine to your kitchen. Instant digital delivery.</p>
+            <div class="hero-buttons">
+                <a href="#shop" class="btn btn-primary" data-lang-en="📚 Browse Recipe Books" data-lang-pt="📚 Ver Livros de Receitas" data-lang-es="📚 Ver Libros de Recetas">📚 Browse Recipe Books</a>
+                <a href="#about" class="btn btn-outline" data-lang-en="Our Story" data-lang-pt="Nossa História" data-lang-es="Nuestra Historia">Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOP SECTION -->
+    <section class="section shop" id="shop">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="📚 Digital Recipe Shop" data-lang-pt="📚 Loja de Receitas Digitais" data-lang-es="📚 Tienda de Recetas Digitales">📚 Digital Recipe Shop</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Browse our collection of authentic recipe e-books. Each guide features step-by-step instructions, ingredient lists, and beautiful photography. Instant PDF download after purchase." data-lang-pt="Explore nossa coleção de e-books de receitas autênticas. Cada guia apresenta instruções passo a passo, listas de ingredientes e belas fotografias. Download instantâneo em PDF após a compra." data-lang-es="Explora nuestra colección de e-books de recetas auténticas. Cada guía presenta instrucciones paso a paso, listas de ingredientes y hermosas fotografías. Descarga instantánea en PDF después de la compra.">Browse our collection of authentic recipe e-books. Each guide features step-by-step instructions, ingredient lists, and beautiful photography. Instant PDF download after purchase.</p>
+        </div>
+
+        <!-- Banner CTA -->
+        <div class="shop-banner fade-in">
+            <div class="shop-banner-text">
+                <h3 data-lang-en="🎉 Complete Collection — Save 40%" data-lang-pt="🎉 Coleção Completa — Economize 40%" data-lang-es="🎉 Colección Completa — Ahorra 40%">🎉 Complete Collection — Save 40%</h3>
+                <p data-lang-en="Get all 6 recipe e-books in one bundle. Over 200 authentic recipes at an unbeatable price." data-lang-pt="Obtenha todos os 6 e-books de receitas em um pacote. Mais de 200 receitas autênticas por um preço imbatível." data-lang-es="Obtén los 6 e-books de recetas en un paquete. Más de 200 recetas auténticas a un precio inmejorable.">Get all 6 recipe e-books in one bundle. Over 200 authentic recipes at an unbeatable price.</p>
+            </div>
+            <button class="btn pulse-btn" onclick="openPurchase('bundle')" data-lang-en="Get Bundle — £29.99" data-lang-pt="Comprar Pacote — £29.99" data-lang-es="Comprar Paquete — £29.99">Get Bundle — £29.99</button>
+        </div>
+
+        <div class="shop-grid">
+            <!-- Product 1 -->
+            <div class="shop-card fade-in">
+                <div class="shop-card-image kebab">
+                    <span>🥙</span>
+                    <span class="shop-badge popular">BESTSELLER</span>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-format">📄 PDF • Instant Download</div>
+                    <h4 data-lang-en="The Art of Kebab — 35 Recipes" data-lang-pt="A Arte do Kebab — 35 Receitas" data-lang-es="El Arte del Kebab — 35 Recetas">The Art of Kebab — 35 Recipes</h4>
+                    <p data-lang-en="Master the art of authentic kebabs. Includes lamb, chicken, and vegetarian recipes with marinades, sauces, and serving guides." data-lang-pt="Domine a arte dos kebabs autênticos. Inclui receitas de cordeiro, frango e vegetarianas com marinadas, molhos e guias de apresentação." data-lang-es="Domina el arte de los kebabs auténticos. Incluye recetas de cordero, pollo y vegetarianas con marinadas, salsas y guías de presentación.">Master the art of authentic kebabs. Includes lamb, chicken, and vegetarian recipes with marinades, sauces, and serving guides.</p>
+                    <div class="shop-card-footer">
+                        <span class="shop-price">£9.99</span>
+                        <button class="btn-buy" onclick="openPurchase('kebab')" data-lang-en="Buy Now" data-lang-pt="Comprar" data-lang-es="Comprar">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="shop-card fade-in">
+                <div class="shop-card-image rice">
+                    <span>🍚</span>
+                    <span class="shop-badge popular">POPULAR</span>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-format">📄 PDF • Instant Download</div>
+                    <h4 data-lang-en="Rice &amp; Pulao Mastery — 30 Recipes" data-lang-pt="Maestria em Arroz &amp; Pulao — 30 Receitas" data-lang-es="Maestría en Arroz &amp; Pulao — 30 Recetas">Rice &amp; Pulao Mastery — 30 Recipes</h4>
+                    <p data-lang-en="From Kabuli Pulao to Biryani — learn the secrets of perfect rice dishes. Traditional techniques, spice blends, and family recipes." data-lang-pt="De Kabuli Pulao a Biryani — aprenda os segredos dos pratos de arroz perfeitos. Técnicas tradicionais, misturas de especiarias e receitas de família." data-lang-es="De Kabuli Pulao a Biryani — aprende los secretos de los platos de arroz perfectos. Técnicas tradicionales, mezclas de especias y recetas familiares.">From Kabuli Pulao to Biryani — learn the secrets of perfect rice dishes. Traditional techniques, spice blends, and family recipes.</p>
+                    <div class="shop-card-footer">
+                        <span class="shop-price">£9.99</span>
+                        <button class="btn-buy" onclick="openPurchase('rice')" data-lang-en="Buy Now" data-lang-pt="Comprar" data-lang-es="Comprar">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="shop-card fade-in">
+                <div class="shop-card-image platter">
+                    <span>🍖</span>
+                    <span class="shop-badge new">NEW</span>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-format">📄 PDF • Instant Download</div>
+                    <h4 data-lang-en="Grills &amp; BBQ Guide — 40 Recipes" data-lang-pt="Guia de Grelhados &amp; Churrasqueira — 40 Receitas" data-lang-es="Guía de Parrilla &amp; BBQ — 40 Recetas">Grills &amp; BBQ Guide — 40 Recipes</h4>
+                    <p data-lang-en="The ultimate charcoal grilling guide. Tikka, seekh kebab, lamb chops, grilled chicken and more. Includes spice rub recipes." data-lang-pt="O guia definitivo de grelha a carvão. Tikka, seekh kebab, costeletas de cordeiro, frango grelhado e mais. Inclui receitas de temperos." data-lang-es="La guía definitiva de parrilla a carbón. Tikka, seekh kebab, chuletas de cordero, pollo a la parrilla y más. Incluye recetas de adobos.">The ultimate charcoal grilling guide. Tikka, seekh kebab, lamb chops, grilled chicken and more. Includes spice rub recipes.</p>
+                    <div class="shop-card-footer">
+                        <span class="shop-price">£11.99</span>
+                        <button class="btn-buy" onclick="openPurchase('grill')" data-lang-en="Buy Now" data-lang-pt="Comprar" data-lang-es="Comprar">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="shop-card fade-in">
+                <div class="shop-card-image bread">
+                    <span>🫓</span>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-format">📄 PDF • Instant Download</div>
+                    <h4 data-lang-en="Breads &amp; Starters — 25 Recipes" data-lang-pt="Pães &amp; Entradas — 25 Receitas" data-lang-es="Panes &amp; Entrantes — 25 Recetas">Breads &amp; Starters — 25 Recipes</h4>
+                    <p data-lang-en="Naan, bolani, mantu, sambosa and more. Learn to make perfect flatbreads, stuffed pastries, and traditional starters at home." data-lang-pt="Naan, bolani, mantu, sambosa e mais. Aprenda a fazer pães achatados perfeitos, pastéis recheados e entradas tradicionais em casa." data-lang-es="Naan, bolani, mantu, sambosa y más. Aprende a hacer panes planos perfectos, pasteles rellenos y entrantes tradicionales en casa.">Naan, bolani, mantu, sambosa and more. Learn to make perfect flatbreads, stuffed pastries, and traditional starters at home.</p>
+                    <div class="shop-card-footer">
+                        <span class="shop-price">£7.99</span>
+                        <button class="btn-buy" onclick="openPurchase('breads')" data-lang-en="Buy Now" data-lang-pt="Comprar" data-lang-es="Comprar">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="shop-card fade-in">
+                <div class="shop-card-image dessert">
+                    <span>🍮</span>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-format">📄 PDF • Instant Download</div>
+                    <h4 data-lang-en="Sweets &amp; Desserts — 28 Recipes" data-lang-pt="Doces &amp; Sobremesas — 28 Receitas" data-lang-es="Dulces &amp; Postres — 28 Recetas">Sweets &amp; Desserts — 28 Recipes</h4>
+                    <p data-lang-en="Firni, sheer yakh, baklava, jalebi and more. Traditional desserts and modern twists on classic Middle Eastern sweets." data-lang-pt="Firni, sheer yakh, baklava, jalebi e mais. Sobremesas tradicionais e toques modernos em doces clássicos do Oriente Médio." data-lang-es="Firni, sheer yakh, baklava, jalebi y más. Postres tradicionales y toques modernos en dulces clásicos del Medio Oriente.">Firni, sheer yakh, baklava, jalebi and more. Traditional desserts and modern twists on classic Middle Eastern sweets.</p>
+                    <div class="shop-card-footer">
+                        <span class="shop-price">£7.99</span>
+                        <button class="btn-buy" onclick="openPurchase('desserts')" data-lang-en="Buy Now" data-lang-pt="Comprar" data-lang-es="Comprar">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 - Bundle -->
+            <div class="shop-card fade-in">
+                <div class="shop-card-image bundle">
+                    <span>📚</span>
+                    <span class="shop-badge" style="background: var(--gold); color: #fff;">BEST VALUE</span>
+                </div>
+                <div class="shop-card-body">
+                    <div class="shop-format">📄 PDF • 6 Books • Instant Download</div>
+                    <h4 data-lang-en="⭐ COMPLETE COLLECTION — All 6 Books" data-lang-pt="⭐ COLEÇÃO COMPLETA — Todos os 6 Livros" data-lang-es="⭐ COLECCIÓN COMPLETA — Los 6 Libros">⭐ COMPLETE COLLECTION — All 6 Books</h4>
+                    <p data-lang-en="Get every recipe book in our collection. Over 200 authentic recipes covering kebabs, rice, grills, breads, desserts and spice guides. Save 40%!" data-lang-pt="Obtenha todos os livros de receitas da nossa coleção. Mais de 200 receitas autênticas cobrindo kebabs, arroz, grelhados, pães, sobremesas e guias de especiarias. Economize 40%!" data-lang-es="Obtén todos los libros de recetas de nuestra colección. Más de 200 recetas auténticas que cubren kebabs, arroz, parrilla, panes, postres y guías de especias. ¡Ahorra 40%!">Get every recipe book in our collection. Over 200 authentic recipes covering kebabs, rice, grills, breads, desserts and spice guides. Save 40%!</p>
+                    <div class="shop-card-footer">
+                        <span class="shop-price">£29.99 <span class="original">£49.95</span></span>
+                        <button class="btn-buy" onclick="openPurchase('bundle')" style="background: var(--warm);" data-lang-en="Buy Now" data-lang-pt="Comprar" data-lang-es="Comprar">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="shop-trust fade-in">
+            <div class="trust-item"><span>⚡</span> <span data-lang-en="Instant download" data-lang-pt="Download instantâneo" data-lang-es="Descarga instantánea">Instant download</span></div>
+            <div class="trust-item"><span>📄</span> <span data-lang-en="PDF format" data-lang-pt="Formato PDF" data-lang-es="Formato PDF">PDF format</span></div>
+            <div class="trust-item"><span>🔒</span> <span data-lang-en="Secure payment" data-lang-pt="Pagamento seguro" data-lang-es="Pago seguro">Secure payment</span></div>
+            <div class="trust-item"><span>💯</span> <span data-lang-en="30-day refund policy" data-lang-pt="Reembolso em 30 dias" data-lang-es="Reembolso en 30 días">30-day refund policy</span></div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works" id="howitworks">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="How It Works" data-lang-pt="Como Funciona" data-lang-es="Cómo Funciona">How It Works</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Getting your recipe e-books is simple and instant." data-lang-pt="Obter seus e-books de receitas é simples e instantâneo." data-lang-es="Obtener tus e-books de recetas es simple e instantáneo.">Getting your recipe e-books is simple and instant.</p>
+        </div>
+        <div class="steps-grid fade-in">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <h4 data-lang-en="Browse" data-lang-pt="Explore" data-lang-es="Explora">Browse</h4>
+                <p data-lang-en="Choose from our collection of recipe e-books" data-lang-pt="Escolha da nossa coleção de e-books de receitas" data-lang-es="Elige de nuestra colección de e-books de recetas">Choose from our collection of recipe e-books</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <h4 data-lang-en="Purchase" data-lang-pt="Compre" data-lang-es="Compra">Purchase</h4>
+                <p data-lang-en="Secure online payment via card or PayPal" data-lang-pt="Pagamento online seguro via cartão ou PayPal" data-lang-es="Pago online seguro con tarjeta o PayPal">Secure online payment via card or PayPal</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <h4 data-lang-en="Download" data-lang-pt="Baixe" data-lang-es="Descarga">Download</h4>
+                <p data-lang-en="Instant PDF download to your device" data-lang-pt="Download instantâneo em PDF para seu dispositivo" data-lang-es="Descarga instantánea en PDF a tu dispositivo">Instant PDF download to your device</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <h4 data-lang-en="Cook!" data-lang-pt="Cozinhe!" data-lang-es="¡Cocina!">Cook!</h4>
+                <p data-lang-en="Follow step-by-step recipes and enjoy" data-lang-pt="Siga as receitas passo a passo e aproveite" data-lang-es="Sigue las recetas paso a paso y disfruta">Follow step-by-step recipes and enjoy</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="About Karwan Restaurant" data-lang-pt="Sobre o Karwan Restaurant" data-lang-es="Sobre Karwan Restaurant">About Karwan Restaurant</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Sharing authentic traditional recipes with food lovers around the world." data-lang-pt="Compartilhando receitas tradicionais autênticas com amantes da gastronomia ao redor do mundo." data-lang-es="Compartiendo recetas tradicionales auténticas con amantes de la gastronomía de todo el mundo.">Sharing authentic traditional recipes with food lovers around the world.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-image fade-in"></div>
+            <div class="about-content fade-in">
+                <h3 data-lang-en="From Our Kitchen to Yours — Since 2017" data-lang-pt="Da Nossa Cozinha Para a Sua — Desde 2017" data-lang-es="De Nuestra Cocina a la Tuya — Desde 2017">From Our Kitchen to Yours — Since 2017</h3>
+                <p data-lang-en="Karwan Restaurant was established in 2017 with a passion for authentic Middle Eastern and Kurdish cuisine. The name 'Karwan' means caravan — representing the journey of flavours across generations and cultures." data-lang-pt="O Karwan Restaurant foi estabelecido em 2017 com paixão pela culinária autêntica do Oriente Médio e curda. O nome 'Karwan' significa caravana — representando a jornada de sabores através de gerações e culturas." data-lang-es="Karwan Restaurant fue establecido en 2017 con pasión por la auténtica cocina del Medio Oriente y kurda. El nombre 'Karwan' significa caravana — representando el viaje de sabores a través de generaciones y culturas.">Karwan Restaurant was established in 2017 with a passion for authentic Middle Eastern and Kurdish cuisine. The name 'Karwan' means caravan — representing the journey of flavours across generations and cultures.</p>
+                <p data-lang-en="Our digital recipe collections are developed by our own team of experienced chefs. Each recipe has been perfected over years of cooking and is presented in clear, easy-to-follow format so anyone can recreate these authentic dishes at home." data-lang-pt="Nossas coleções de receitas digitais são desenvolvidas por nossa própria equipe de chefs experientes. Cada receita foi aperfeiçoada ao longo de anos de prática culinária e é apresentada em formato claro e fácil de seguir para que qualquer pessoa possa recriar esses pratos autênticos em casa." data-lang-es="Nuestras colecciones de recetas digitales son desarrolladas por nuestro propio equipo de chefs experimentados. Cada receta ha sido perfeccionada a lo largo de años de cocina y se presenta en un formato claro y fácil de seguir para que cualquiera pueda recrear estos platos auténticos en casa.">Our digital recipe collections are developed by our own team of experienced chefs. Each recipe has been perfected over years of cooking and is presented in clear, easy-to-follow format so anyone can recreate these authentic dishes at home.</p>
+                <p data-lang-en="Whether you're a seasoned cook or a complete beginner, our recipe e-books guide you step by step through creating dishes that will transport your taste buds to the heart of the Middle East." data-lang-pt="Seja você um cozinheiro experiente ou um iniciante completo, nossos e-books de receitas guiam você passo a passo na criação de pratos que transportarão seu paladar ao coração do Oriente Médio." data-lang-es="Ya seas un cocinero experimentado o un principiante total, nuestros e-books de recetas te guían paso a paso en la creación de platos que transportarán tu paladar al corazón del Medio Oriente.">Whether you're a seasoned cook or a complete beginner, our recipe e-books guide you step by step through creating dishes that will transport your taste buds to the heart of the Middle East.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="number">2017</div>
+                        <div class="label" data-lang-en="Established" data-lang-pt="Fundado" data-lang-es="Fundado">Established</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">200+</div>
+                        <div class="label" data-lang-en="Recipes" data-lang-pt="Receitas" data-lang-es="Recetas">Recipes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">5K+</div>
+                        <div class="label" data-lang-en="Downloads" data-lang-pt="Downloads" data-lang-es="Descargas">Downloads</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Categories Section -->
+    <section class="section recipes" id="recipes">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="What's Inside Our E-Books" data-lang-pt="O Que Há Dentro dos Nossos E-Books" data-lang-es="Qué Hay Dentro de Nuestros E-Books">What's Inside Our E-Books</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Each recipe e-book is carefully crafted with detailed instructions, ingredient guides and cooking tips from our experienced chefs." data-lang-pt="Cada e-book de receitas é cuidadosamente elaborado com instruções detalhadas, guias de ingredientes e dicas culinárias dos nossos chefs experientes." data-lang-es="Cada e-book de recetas está cuidadosamente elaborado con instrucciones detalladas, guías de ingredientes y consejos culinarios de nuestros chefs experimentados.">Each recipe e-book is carefully crafted with detailed instructions, ingredient guides and cooking tips from our experienced chefs.</p>
+        </div>
+        <div class="recipes-grid">
+            <div class="recipe-card fade-in">
+                <span class="recipe-icon">📝</span>
+                <h3 data-lang-en="Step-by-Step Instructions" data-lang-pt="Instruções Passo a Passo" data-lang-es="Instrucciones Paso a Paso">Step-by-Step Instructions</h3>
+                <p data-lang-en="Clear, detailed instructions that guide you through every stage of the cooking process. Perfect for beginners and experienced cooks alike." data-lang-pt="Instruções claras e detalhadas que guiam você em cada etapa do processo culinário. Perfeito tanto para iniciantes quanto para cozinheiros experientes." data-lang-es="Instrucciones claras y detalladas que te guían en cada etapa del proceso culinario. Perfecto tanto para principiantes como para cocineros experimentados.">Clear, detailed instructions that guide you through every stage of the cooking process. Perfect for beginners and experienced cooks alike.</p>
+            </div>
+            <div class="recipe-card fade-in">
+                <span class="recipe-icon">🧂</span>
+                <h3 data-lang-en="Authentic Spice Guides" data-lang-pt="Guias de Especiarias Autênticas" data-lang-es="Guías de Especias Auténticas">Authentic Spice Guides</h3>
+                <p data-lang-en="Learn which spices to use, where to find them, and how to create your own authentic spice blends. Complete ingredient sourcing tips included." data-lang-pt="Aprenda quais especiarias usar, onde encontrá-las e como criar suas próprias misturas autênticas. Dicas completas de onde encontrar os ingredientes." data-lang-es="Aprende qué especias usar, dónde encontrarlas y cómo crear tus propias mezclas auténticas. Consejos completos de dónde encontrar los ingredientes.">Learn which spices to use, where to find them, and how to create your own authentic spice blends. Complete ingredient sourcing tips included.</p>
+            </div>
+            <div class="recipe-card fade-in">
+                <span class="recipe-icon">👨‍🍳</span>
+                <h3 data-lang-en="Chef's Tips &amp; Techniques" data-lang-pt="Dicas &amp; Técnicas do Chef" data-lang-es="Consejos &amp; Técnicas del Chef">Chef's Tips &amp; Techniques</h3>
+                <p data-lang-en="Professional tips passed down through generations. Learn the traditional techniques that make authentic Middle Eastern cooking truly special." data-lang-pt="Dicas profissionais passadas de geração em geração. Aprenda as técnicas tradicionais que tornam a culinária autêntica do Oriente Médio verdadeiramente especial." data-lang-es="Consejos profesionales transmitidos de generación en generación. Aprende las técnicas tradicionales que hacen la cocina auténtica del Medio Oriente verdaderamente especial.">Professional tips passed down through generations. Learn the traditional techniques that make authentic Middle Eastern cooking truly special.</p>
+            </div>
+            <div class="recipe-card fade-in">
+                <span class="recipe-icon">🥘</span>
+                <h3 data-lang-en="Serving Suggestions" data-lang-pt="Sugestões de Apresentação" data-lang-es="Sugerencias de Presentación">Serving Suggestions</h3>
+                <p data-lang-en="Learn how to plate beautifully and pair dishes together for the perfect meal. Includes portion guides for family dinners and gatherings." data-lang-pt="Aprenda como empratar lindamente e combinar pratos para a refeição perfeita. Inclui guias de porções para jantares em família e reuniões." data-lang-es="Aprende a emplatar hermosamente y combinar platos para la comida perfecta. Incluye guías de porciones para cenas familiares y reuniones.">Learn how to plate beautifully and pair dishes together for the perfect meal. Includes portion guides for family dinners and gatherings.</p>
+            </div>
+            <div class="recipe-card fade-in">
+                <span class="recipe-icon">🌍</span>
+                <h3 data-lang-en="Cultural Stories" data-lang-pt="Histórias Culturais" data-lang-es="Historias Culturales">Cultural Stories</h3>
+                <p data-lang-en="Each recipe comes with the story behind it — learn about the traditions, celebrations and history connected to these authentic dishes." data-lang-pt="Cada receita vem com a história por trás dela — aprenda sobre as tradições, celebrações e história conectada a esses pratos autênticos." data-lang-es="Cada receta viene con la historia detrás — aprende sobre las tradiciones, celebraciones e historia conectada a estos platos auténticos.">Each recipe comes with the story behind it — learn about the traditions, celebrations and history connected to these authentic dishes.</p>
+            </div>
+            <div class="recipe-card fade-in">
+                <span class="recipe-icon">📱</span>
+                <h3 data-lang-en="Read Anywhere" data-lang-pt="Leia em Qualquer Lugar" data-lang-es="Lee en Cualquier Lugar">Read Anywhere</h3>
+                <p data-lang-en="PDF format works on any device — phone, tablet, laptop or print at home. Take your recipes to the kitchen, the shops, or anywhere you go." data-lang-pt="Formato PDF funciona em qualquer dispositivo — celular, tablet, laptop ou imprima em casa. Leve suas receitas para a cozinha, o mercado ou onde você for." data-lang-es="Formato PDF funciona en cualquier dispositivo — teléfono, tableta, portátil o imprímelo en casa. Lleva tus recetas a la cocina, al mercado o donde vayas.">PDF format works on any device — phone, tablet, laptop or print at home. Take your recipes to the kitchen, the shops, or anywhere you go.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="What Our Customers Say" data-lang-pt="O Que Nossos Clientes Dizem" data-lang-es="Lo Que Dicen Nuestros Clientes">What Our Customers Say</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Thousands of home cooks around the world love our recipe collections." data-lang-pt="Milhares de cozinheiros caseiros ao redor do mundo amam nossas coleções de receitas." data-lang-es="Miles de cocineros caseros en todo el mundo aman nuestras colecciones de recetas.">Thousands of home cooks around the world love our recipe collections.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p data-lang-en="&quot;The kebab recipe book is incredible! I've been trying to recreate restaurant-quality kebabs for years and these recipes finally cracked it. The spice blend section alone is worth the price.&quot;" data-lang-pt="&quot;O livro de receitas de kebab é incrível! Eu tentava recriar kebabs com qualidade de restaurante há anos e essas receitas finalmente conseguiram. A seção de misturas de especiarias já vale o preço.&quot;" data-lang-es="&quot;¡El libro de recetas de kebab es increíble! He intentado recrear kebabs de calidad de restaurante durante años y estas recetas finalmente lo lograron. La sección de mezclas de especias ya vale el precio.&quot;">"The kebab recipe book is incredible! I've been trying to recreate restaurant-quality kebabs for years and these recipes finally cracked it. The spice blend section alone is worth the price."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">M</div>
+                    <div>
+                        <div class="name">Michael T.</div>
+                        <div class="location">London, UK</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p data-lang-en="&quot;I bought the complete collection and cook from it every week. The Kabuli Pulao recipe is exactly like my grandmother used to make. Beautiful clear instructions and the cultural stories make it so special.&quot;" data-lang-pt="&quot;Comprei a coleção completa e cozinho com ela toda semana. A receita de Kabuli Pulao é exatamente como minha avó fazia. Instruções claras e lindas e as histórias culturais tornam tudo tão especial.&quot;" data-lang-es="&quot;Compré la colección completa y cocino con ella cada semana. La receta de Kabuli Pulao es exactamente como la hacía mi abuela. Instrucciones hermosas y claras y las historias culturales lo hacen tan especial.&quot;">"I bought the complete collection and cook from it every week. The Kabuli Pulao recipe is exactly like my grandmother used to make. Beautiful clear instructions and the cultural stories make it so special."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">F</div>
+                    <div>
+                        <div class="name">Fatima A.</div>
+                        <div class="location">Manchester, UK</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p data-lang-en="&quot;As someone who loves Middle Eastern food but never knew how to cook it, these e-books have been a game changer. Clear, simple and the results are absolutely delicious. Highly recommend!&quot;" data-lang-pt="&quot;Como alguém que ama comida do Oriente Médio mas nunca soube cozinhá-la, esses e-books foram uma revolução. Claros, simples e os resultados são absolutamente deliciosos. Recomendo muito!&quot;" data-lang-es="&quot;Como alguien que ama la comida del Medio Oriente pero nunca supo cómo cocinarla, estos e-books han sido un cambio total. Claros, simples y los resultados son absolutamente deliciosos. ¡Muy recomendado!&quot;">"As someone who loves Middle Eastern food but never knew how to cook it, these e-books have been a game changer. Clear, simple and the results are absolutely delicious. Highly recommend!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">J</div>
+                    <div>
+                        <div class="name">James R.</div>
+                        <div class="location">Birmingham, UK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="section-header fade-in">
+            <h2 data-lang-en="Get In Touch" data-lang-pt="Entre em Contato" data-lang-es="Contáctenos">Get In Touch</h2>
+            <div class="section-divider"></div>
+            <p data-lang-en="Have questions about our recipe books, need help with a download, or just want to say hello? We'd love to hear from you." data-lang-pt="Tem perguntas sobre nossos livros de receitas, precisa de ajuda com um download ou apenas quer dizer olá? Adoraríamos ouvir de você." data-lang-es="¿Tienes preguntas sobre nuestros libros de recetas, necesitas ayuda con una descarga o simplemente quieres saludar? Nos encantaría saber de ti.">Have questions about our recipe books, need help with a download, or just want to say hello? We'd love to hear from you.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <h3 data-lang-en="Contact Us" data-lang-pt="Contate-nos" data-lang-es="Contáctanos">Contact Us</h3>
+                <p data-lang-en="Our team is happy to help with any questions about our recipe collections, technical issues with downloads, or suggestions for future e-books." data-lang-pt="Nossa equipe terá prazer em ajudar com qualquer pergunta sobre nossas coleções de receitas, problemas técnicos com downloads ou sugestões para futuros e-books." data-lang-es="Nuestro equipo estará encantado de ayudar con cualquier pregunta sobre nuestras colecciones de recetas, problemas técnicos con descargas o sugerencias para futuros e-books.">Our team is happy to help with any questions about our recipe collections, technical issues with downloads, or suggestions for future e-books.</p>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-text">
+                        <div class="title" data-lang-en="Registered Address" data-lang-pt="Endereço Registrado" data-lang-es="Dirección Registrada">Registered Address</div>
+                        <div class="detail">2 Manor House Lane<br>Datchet, Slough<br>United Kingdom SL3 9EB</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">✉️</div>
+                    <div class="contact-item-text">
+                        <div class="title">Email</div>
+                        <div class="detail">info@karwanrestaurant.co.uk</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">🕐</div>
+                    <div class="contact-item-text">
+                        <div class="title" data-lang-en="Support Hours" data-lang-pt="Horário de Suporte" data-lang-es="Horario de Soporte">Support Hours</div>
+                        <div class="detail" data-lang-en="Mon - Fri: 9:00 - 17:00 (GMT)" data-lang-pt="Seg - Sex: 9:00 - 17:00 (GMT)" data-lang-es="Lun - Vie: 9:00 - 17:00 (GMT)">Mon - Fri: 9:00 - 17:00 (GMT)</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">⏱️</div>
+                    <div class="contact-item-text">
+                        <div class="title" data-lang-en="Response Time" data-lang-pt="Tempo de Resposta" data-lang-es="Tiempo de Respuesta">Response Time</div>
+                        <div class="detail" data-lang-en="Within 24 hours on business days" data-lang-pt="Em até 24 horas em dias úteis" data-lang-es="Dentro de las 24 horas en días hábiles">Within 24 hours on business days</div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form fade-in">
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name" data-lang-en="Your Name" data-lang-pt="Seu Nome" data-lang-es="Tu Nombre">Your Name</label>
+                        <input type="text" id="name" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-lang-en="Email Address" data-lang-pt="Endereço de Email" data-lang-es="Correo Electrónico">Email Address</label>
+                        <input type="email" id="email" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" data-lang-en="Subject" data-lang-pt="Assunto" data-lang-es="Asunto">Subject</label>
+                        <select id="subject">
+                            <option value="general" data-lang-en="General Enquiry" data-lang-pt="Consulta Geral" data-lang-es="Consulta General">General Enquiry</option>
+                            <option value="download" data-lang-en="Download Issue" data-lang-pt="Problema com Download" data-lang-es="Problema con Descarga">Download Issue</option>
+                            <option value="refund" data-lang-en="Refund Request" data-lang-pt="Pedido de Reembolso" data-lang-es="Solicitud de Reembolso">Refund Request</option>
+                            <option value="suggestion" data-lang-en="Suggestion" data-lang-pt="Sugestão" data-lang-es="Sugerencia">Suggestion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-lang-en="Message" data-lang-pt="Mensagem" data-lang-es="Mensaje">Message</label>
+                        <textarea id="message" required=""></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-lang-en="Send Message" data-lang-pt="Enviar Mensagem" data-lang-es="Enviar Mensaje">Send Message</button>
+                </form>
+                <p id="formSuccess" style="display:none; color: green; text-align: center; margin-top: 1rem; font-weight: 600;" data-lang-en="✓ Thank you! We'll respond within 24 hours." data-lang-pt="✓ Obrigado! Responderemos em até 24 horas." data-lang-es="✓ ¡Gracias! Responderemos en 24 horas.">✓ Thank you! We'll respond within 24 hours.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Karwan Restaurant</h3>
+                <p data-lang-en="Authentic Middle Eastern and Kurdish digital recipe collections. From our kitchen to yours — bringing traditional flavours to home cooks around the world through beautifully crafted e-books." data-lang-pt="Coleções digitais de receitas autênticas do Oriente Médio e curdas. Da nossa cozinha para a sua — trazendo sabores tradicionais para cozinheiros caseiros ao redor do mundo através de e-books lindamente elaborados." data-lang-es="Colecciones digitales de recetas auténticas del Medio Oriente y kurdas. De nuestra cocina a la tuya — llevando sabores tradicionales a cocineros caseros de todo el mundo a través de e-books bellamente elaborados.">Authentic Middle Eastern and Kurdish digital recipe collections. From our kitchen to yours — bringing traditional flavours to home cooks around the world through beautifully crafted e-books.</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-lang-en="Quick Links" data-lang-pt="Links Rápidos" data-lang-es="Enlaces Rápidos">Quick Links</h4>
+                <a href="#home" data-lang-en="Home" data-lang-pt="Início" data-lang-es="Inicio">Home</a>
+                <a href="#shop" data-lang-en="Recipe Shop" data-lang-pt="Loja de Receitas" data-lang-es="Tienda de Recetas">Recipe Shop</a>
+                <a href="#about" data-lang-en="About Us" data-lang-pt="Sobre Nós" data-lang-es="Sobre Nosotros">About Us</a>
+                <a href="#recipes" data-lang-en="What's Inside" data-lang-pt="O Que Contém" data-lang-es="Qué Contiene">What's Inside</a>
+                <a href="#contact" data-lang-en="Contact" data-lang-pt="Contato" data-lang-es="Contacto">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="#" onclick="openModal('privacy'); return false;" data-lang-en="Privacy Policy" data-lang-pt="Política de Privacidade" data-lang-es="Política de Privacidad">Privacy Policy</a>
+                <a href="#" onclick="openModal('terms'); return false;" data-lang-en="Terms &amp; Conditions" data-lang-pt="Termos &amp; Condições" data-lang-es="Términos &amp; Condiciones">Terms &amp; Conditions</a>
+                <a href="#" onclick="openModal('refund'); return false;" data-lang-en="Refund Policy" data-lang-pt="Política de Reembolso" data-lang-es="Política de Reembolso">Refund Policy</a>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <div class="footer-legal-info">
+                <strong>KARWAN RESTAURANT LIMITED</strong><br>
+                Company Number: 10926394<br>
+                Registered Office: 2 Manor House Lane, Datchet, Slough, United Kingdom SL3 9EB<br>
+                Director: Mr Sandeep Kumar<br>
+                Incorporated: 22 August 2017 under the Companies Act 2006 | Private company limited by shares | Registered in England and Wales
+            </div>
+            <div class="footer-copyright">
+                © 2026 Karwan Restaurant Limited — All rights reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('privacy')">✕</button>
+            <h2>Privacy Policy</h2>
+            <p><strong>Last updated:</strong> January 2026</p>
+            <p><strong>KARWAN RESTAURANT LIMITED</strong> (Company Number: 10926394), registered at 2 Manor House Lane, Datchet, Slough, SL3 9EB, United Kingdom, is committed to protecting your privacy and personal data in compliance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
+
+            <h3>1. Data Controller</h3>
+            <p>The data controller is Karwan Restaurant Limited. For any data protection enquiries, please contact us at info@karwanrestaurant.co.uk.</p>
+
+            <h3>2. Information We Collect</h3>
+            <p>We collect personal information that you provide when you make a purchase, create an account, or contact us. This may include your name, email address, and payment information. Payment card details are processed securely by our payment provider and are never stored on our servers.</p>
+
+            <h3>3. How We Use Your Information</h3>
+            <p>We use your personal data to process purchases and deliver digital products, provide customer support, send order confirmations and download links, and communicate about product updates (only with your consent). We do not sell, rent, or share your personal information with any third parties for marketing purposes.</p>
+
+            <h3>4. Legal Basis for Processing</h3>
+            <p>We process your data on the basis of contract performance (to deliver products you have purchased), legitimate interests (customer support and service improvement), and consent (for marketing communications).</p>
+
+            <h3>5. Data Retention</h3>
+            <p>We retain your personal data only for as long as necessary to fulfil the purposes for which it was collected, including satisfying legal, accounting, or reporting requirements. Purchase records are retained for 6 years for tax purposes.</p>
+
+            <h3>6. Data Security</h3>
+            <p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. All payment processing is handled through encrypted, PCI-compliant payment providers.</p>
+
+            <h3>7. Your Rights Under UK GDPR</h3>
+            <p>You have the right to access your personal data, rectify inaccurate data, request erasure of your data, restrict processing, object to processing, and data portability. To exercise any of these rights, please contact us at info@karwanrestaurant.co.uk. We will respond within 30 days.</p>
+
+            <h3>8. Cookies</h3>
+            <p>Our website uses essential cookies required for the functioning of the site and payment processing. We do not use tracking or advertising cookies.</p>
+
+            <h3>9. Contact</h3>
+            <p>For any privacy-related enquiries:<br>
+            KARWAN RESTAURANT LIMITED<br>
+            2 Manor House Lane, Datchet, Slough, SL3 9EB<br>
+            Email: info@karwanrestaurant.co.uk</p>
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Modal -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('terms')">✕</button>
+            <h2>Terms &amp; Conditions</h2>
+            <p><strong>Last updated:</strong> January 2026</p>
+            <p>These terms govern your use of the website and purchase of digital products from <strong>KARWAN RESTAURANT LIMITED</strong> (Company Number: 10926394), a private company limited by shares registered in England and Wales.</p>
+
+            <h3>1. Company Information</h3>
+            <p>KARWAN RESTAURANT LIMITED<br>
+            Company Number: 10926394<br>
+            Registered Office: 2 Manor House Lane, Datchet, Slough, SL3 9EB, United Kingdom<br>
+            Director: Mr Sandeep Kumar<br>
+            Incorporated: 22 August 2017 under the Companies Act 2006</p>
+
+            <h3>2. Products</h3>
+            <p>We sell digital recipe e-books in PDF format. All products are delivered electronically via instant download link after successful payment. No physical products are shipped.</p>
+
+            <h3>3. Pricing &amp; Payment</h3>
+            <p>All prices are displayed in British Pounds (GBP) and include VAT where applicable. Payment is processed securely through our payment provider. We accept major credit/debit cards and PayPal.</p>
+
+            <h3>4. Delivery</h3>
+            <p>Digital products are delivered instantly upon successful payment. You will receive a download link via email and/or on-screen immediately after purchase. If you do not receive your download, please contact us at info@karwanrestaurant.co.uk.</p>
+
+            <h3>5. Intellectual Property</h3>
+            <p>All recipe e-books, content, images, and materials are the intellectual property of Karwan Restaurant Limited. Purchasing a digital product grants you a personal, non-transferable licence to use the content for personal purposes. You may not redistribute, resell, or share the purchased files.</p>
+
+            <h3>6. Refund Policy</h3>
+            <p>Due to the digital nature of our products, we offer a 30-day satisfaction guarantee. If you are not satisfied with your purchase, contact us within 30 days for a full refund. See our full Refund Policy for details.</p>
+
+            <h3>7. Limitation of Liability</h3>
+            <p>To the fullest extent permitted by law, Karwan Restaurant Limited shall not be liable for any indirect, incidental, or consequential damages arising from the use of our digital products or website.</p>
+
+            <h3>8. Governing Law</h3>
+            <p>These terms are governed by and construed in accordance with the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the English courts.</p>
+
+            <h3>9. Contact</h3>
+            <p>For any enquiries regarding these terms:<br>
+            KARWAN RESTAURANT LIMITED<br>
+            2 Manor House Lane, Datchet, Slough, SL3 9EB<br>
+            Email: info@karwanrestaurant.co.uk</p>
+        </div>
+    </div>
+
+    <!-- Refund Policy Modal -->
+    <div class="modal-overlay" id="refundModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('refund')">✕</button>
+            <h2>Refund Policy</h2>
+            <p><strong>Last updated:</strong> January 2026</p>
+            <p>At <strong>KARWAN RESTAURANT LIMITED</strong>, we want you to be completely satisfied with your purchase. This policy outlines our refund terms for digital products.</p>
+
+            <h3>1. 30-Day Satisfaction Guarantee</h3>
+            <p>If you are not satisfied with any of our digital recipe e-books, you may request a full refund within 30 days of purchase. No questions asked.</p>
+
+            <h3>2. How to Request a Refund</h3>
+            <p>To request a refund, please email us at info@karwanrestaurant.co.uk with your order reference number and the email address used for the purchase. We will process your refund within 5-10 business days.</p>
+
+            <h3>3. Refund Method</h3>
+            <p>Refunds will be issued to the original payment method used at the time of purchase.</p>
+
+            <h3>4. After 30 Days</h3>
+            <p>Refund requests made after the 30-day period will be reviewed on a case-by-case basis. We may offer a refund or credit at our discretion if there is a legitimate issue with the product.</p>
+
+            <h3>5. Technical Issues</h3>
+            <p>If you experience technical difficulties downloading or accessing your e-book, please contact us first. We will do our best to resolve the issue before processing a refund.</p>
+
+            <h3>6. Contact</h3>
+            <p>For refund requests or questions:<br>
+            KARWAN RESTAURANT LIMITED<br>
+            2 Manor House Lane, Datchet, Slough, SL3 9EB<br>
+            Email: info@karwanrestaurant.co.uk</p>
+        </div>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div class="modal-overlay purchase-modal" id="purchaseModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePurchase()">✕</button>
+            <div class="item-detail-icon" id="purchaseIcon">🥙</div>
+            <h2 id="purchaseTitle">The Art of Kebab</h2>
+            <div class="price-display" id="purchasePrice">£9.99</div>
+            <p id="purchaseDesc" style="color: var(--gray);">35 authentic recipes in PDF format.</p>
+            <div class="purchase-info">
+                <div data-lang-en="Instant PDF download after payment" data-lang-pt="Download instantâneo em PDF após pagamento" data-lang-es="Descarga instantánea en PDF después del pago">Instant PDF download after payment</div>
+                <div data-lang-en="Works on any device (phone, tablet, laptop)" data-lang-pt="Funciona em qualquer dispositivo (celular, tablet, laptop)" data-lang-es="Funciona en cualquier dispositivo (teléfono, tableta, portátil)">Works on any device (phone, tablet, laptop)</div>
+                <div data-lang-en="Step-by-step recipes with photos" data-lang-pt="Receitas passo a passo com fotos" data-lang-es="Recetas paso a paso con fotos">Step-by-step recipes with photos</div>
+                <div data-lang-en="30-day money-back guarantee" data-lang-pt="Garantia de reembolso de 30 dias" data-lang-es="Garantía de reembolso de 30 días">30-day money-back guarantee</div>
+                <div data-lang-en="Secure payment via card or PayPal" data-lang-pt="Pagamento seguro via cartão ou PayPal" data-lang-es="Pago seguro con tarjeta o PayPal">Secure payment via card or PayPal</div>
+            </div>
+            <div class="form-group">
+                <label for="purchaseEmail" data-lang-en="Your email (for delivery):" data-lang-pt="Seu email (para entrega):" data-lang-es="Tu email (para entrega):">Your email (for delivery):</label>
+                <input type="email" id="purchaseEmail" placeholder="email@example.com" required="">
+            </div>
+            <button class="btn btn-success" onclick="submitPurchase()" data-lang-en="🔒 Proceed to Payment" data-lang-pt="🔒 Ir para Pagamento" data-lang-es="🔒 Proceder al Pago">🔒 Proceed to Payment</button>
+            <p style="font-size: 0.8rem; color: var(--gray); margin-top: 1rem; text-align: center;" data-lang-en="Secure encrypted payment. Instant delivery to your email." data-lang-pt="Pagamento criptografado seguro. Entrega instantânea para seu email." data-lang-es="Pago cifrado seguro. Entrega instantánea a tu email.">Secure encrypted payment. Instant delivery to your email.</p>
+        </div>
+    </div>
+
+    <script>
+        // ===== LANGUAGE SYSTEM =====
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('[data-lang-' + lang + ']').forEach(el => {
+                const text = el.getAttribute('data-lang-' + lang);
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = text;
+                } else {
+                    el.innerHTML = text;
+                }
+            });
+        }
+
+        // ===== MOBILE MENU =====
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== CONTACT FORM =====
+        function handleSubmit(e) {
+            e.preventDefault();
+            document.getElementById('formSuccess').style.display = 'block';
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('formSuccess').style.display = 'none';
+            }, 5000);
+        }
+
+        // ===== MODALS =====
+        function openModal(type) {
+            if (type === 'privacy') {
+                document.getElementById('privacyModal').classList.add('active');
+            } else if (type === 'terms') {
+                document.getElementById('termsModal').classList.add('active');
+            } else if (type === 'refund') {
+                document.getElementById('refundModal').classList.add('active');
+            }
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(type) {
+            if (type === 'privacy') {
+                document.getElementById('privacyModal').classList.remove('active');
+            } else if (type === 'terms') {
+                document.getElementById('termsModal').classList.remove('active');
+            } else if (type === 'refund') {
+                document.getElementById('refundModal').classList.remove('active');
+            }
+            document.body.style.overflow = '';
+        }
+
+        // ===== PURCHASE SYSTEM =====
+        const products = {
+            kebab: {
+                icon: '🥙',
+                title: { en: 'The Art of Kebab — 35 Recipes', pt: 'A Arte do Kebab — 35 Receitas', es: 'El Arte del Kebab — 35 Recetas' },
+                desc: { en: 'Master authentic kebab recipes with marinades, sauces and serving guides.', pt: 'Domine receitas autênticas de kebab com marinadas, molhos e guias de apresentação.', es: 'Domina recetas auténticas de kebab con marinadas, salsas y guías de presentación.' },
+                price: '£9.99'
+            },
+            rice: {
+                icon: '🍚',
+                title: { en: 'Rice & Pulao Mastery — 30 Recipes', pt: 'Maestria em Arroz & Pulao — 30 Receitas', es: 'Maestría en Arroz & Pulao — 30 Recetas' },
+                desc: { en: 'From Kabuli Pulao to Biryani — traditional rice techniques and spice blends.', pt: 'De Kabuli Pulao a Biryani — técnicas tradicionais de arroz e misturas de especiarias.', es: 'De Kabuli Pulao a Biryani — técnicas tradicionales de arroz y mezclas de especias.' },
+                price: '£9.99'
+            },
+            grill: {
+                icon: '🍖',
+                title: { en: 'Grills & BBQ Guide — 40 Recipes', pt: 'Guia de Grelhados & Churrasqueira — 40 Receitas', es: 'Guía de Parrilla & BBQ — 40 Recetas' },
+                desc: { en: 'The ultimate charcoal grilling guide with tikka, seekh kebab, lamb chops and more.', pt: 'O guia definitivo de grelha a carvão com tikka, seekh kebab, costeletas de cordeiro e mais.', es: 'La guía definitiva de parrilla a carbón con tikka, seekh kebab, chuletas de cordero y más.' },
+                price: '£11.99'
+            },
+            breads: {
+                icon: '🫓',
+                title: { en: 'Breads & Starters — 25 Recipes', pt: 'Pães & Entradas — 25 Receitas', es: 'Panes & Entrantes — 25 Recetas' },
+                desc: { en: 'Naan, bolani, mantu, sambosa and more traditional flatbreads and starters.', pt: 'Naan, bolani, mantu, sambosa e mais pães achatados e entradas tradicionais.', es: 'Naan, bolani, mantu, sambosa y más panes planos y entrantes tradicionales.' },
+                price: '£7.99'
+            },
+            desserts: {
+                icon: '🍮',
+                title: { en: 'Sweets & Desserts — 28 Recipes', pt: 'Doces & Sobremesas — 28 Receitas', es: 'Dulces & Postres — 28 Recetas' },
+                desc: { en: 'Traditional desserts including firni, baklava, jalebi and modern Middle Eastern sweets.', pt: 'Sobremesas tradicionais incluindo firni, baklava, jalebi e doces modernos do Oriente Médio.', es: 'Postres tradicionales incluyendo firni, baklava, jalebi y dulces modernos del Medio Oriente.' },
+                price: '£7.99'
+            },
+            bundle: {
+                icon: '📚',
+                title: { en: '⭐ Complete Collection — All 6 Books (200+ Recipes)', pt: '⭐ Coleção Completa — Todos os 6 Livros (200+ Receitas)', es: '⭐ Colección Completa — Los 6 Libros (200+ Recetas)' },
+                desc: { en: 'Every recipe book in one bundle. Save 40% — best value!', pt: 'Todos os livros de receitas em um pacote. Economize 40% — melhor valor!', es: 'Todos los libros de recetas en un paquete. Ahorra 40% — ¡mejor valor!' },
+                price: '£29.99'
+            }
+        };
+
+        function openPurchase(productId) {
+            const product = products[productId];
+            document.getElementById('purchaseIcon').textContent = product.icon;
+            document.getElementById('purchaseTitle').textContent = product.title[currentLang] || product.title.en;
+            document.getElementById('purchasePrice').textContent = product.price;
+            document.getElementById('purchaseDesc').textContent = product.desc[currentLang] || product.desc.en;
+            document.getElementById('purchaseModal').classList.add('active');
+            document.getElementById('purchaseEmail').value = '';
+            document.getElementById('purchaseEmail').style.borderColor = '#e5e7eb';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePurchase() {
+            document.getElementById('purchaseModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function submitPurchase() {
+            const email = document.getElementById('purchaseEmail').value;
+            if (!email || !email.includes('@')) {
+                document.getElementById('purchaseEmail').style.borderColor = 'red';
+                return;
+            }
+            
+            const title = document.getElementById('purchaseTitle').textContent;
+            const price = document.getElementById('purchasePrice').textContent;
+            
+            let heading = '';
+            let msg = '';
+            if (currentLang === 'pt') {
+                heading = 'Processando Pagamento...';
+                msg = `Obrigado! Você será redirecionado para a página de pagamento seguro para "<strong>${title}</strong>" (${price}). O link de download será enviado para <strong>${email}</strong> imediatamente após a confirmação do pagamento.`;
+            } else if (currentLang === 'es') {
+                heading = 'Procesando Pago...';
+                msg = `¡Gracias! Serás redirigido a la página de pago seguro para "<strong>${title}</strong>" (${price}). El enlace de descarga se enviará a <strong>${email}</strong> inmediatamente después de la confirmación del pago.`;
+            } else {
+                heading = 'Processing Payment...';
+                msg = `Thank you! You will be redirected to our secure payment page for "<strong>${title}</strong>" (${price}). Your download link will be sent to <strong>${email}</strong> immediately after payment confirmation.`;
+            }
+            
+            document.getElementById('purchaseModal').querySelector('.modal-content').innerHTML = `
+                <div style="text-align: center; padding: 2rem 0;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🔒</div>
+                    <h2 style="color: var(--success); margin-bottom: 1rem;">${heading}</h2>
+                    <p style="color: var(--gray); margin-bottom: 2rem; font-size: 1.05rem;">${msg}</p>
+                    <div style="background: var(--light-gray); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <p style="font-size: 0.85rem; color: var(--gray); margin: 0;">${currentLang === 'pt' ? 'Em um site real, você seria redirecionado para o gateway de pagamento seguro (Stripe/PayPal) neste momento.' : currentLang === 'es' ? 'En un sitio real, serías redirigido a la pasarela de pago seguro (Stripe/PayPal) en este momento.' : 'On a live site, you would be redirected to the secure payment gateway (Stripe/PayPal) at this point.'}</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="closePurchase(); setTimeout(()=>location.reload(), 100);">${currentLang === 'pt' ? 'Fechar' : currentLang === 'es' ? 'Cerrar' : 'Close'}</button>
+                </div>
+            `;
+        }
+
+        // Close modals on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+
+
+</body></html>
